@@ -1,0 +1,28 @@
+import java.util.ArrayList;
+
+public class Test {
+
+	public static void main(String[] args) {
+		int positionStart;
+		int positionEnd;
+		String tmpString = "abcd";
+		positionStart = 0;
+		positionEnd = 0;
+		ArrayList<String> tmp = new ArrayList<String>();
+		String sbstr;
+		while (tmpString.substring(positionStart).contains("|")) {
+			positionEnd = tmpString.indexOf('|', positionStart);
+			sbstr = tmpString.substring(positionStart, positionEnd).trim();
+			tmp.add(sbstr);
+			positionStart = positionEnd + 1;
+		}
+		sbstr = tmpString.substring(positionStart).trim();
+		tmp.add(sbstr);
+		positionStart = 0;
+		positionEnd = 0;
+		
+		for (int i = 0; i < tmp.size(); i++) {
+			System.out.println(tmp.get(i));
+		}
+	}
+}

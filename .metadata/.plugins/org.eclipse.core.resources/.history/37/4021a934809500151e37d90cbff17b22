@@ -1,0 +1,112 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class JamesParser {
+	
+	static int count = 0;
+	
+	public static final String INPUT_FILE = "Extra-StateWarData_v4.0.csv";
+	public static final String OUTPUT_FILE = "extra-state-table.csv";
+	
+	public static final int NUM_ELEMENTS = 13;
+
+
+	public static void parseHelper(File inFile, File outFile) throws IOException {
+		
+		Scanner sc = new Scanner(inFile);
+		FileWriter writer = new FileWriter(outFile);
+		ArrayList<ArrayList<ArrayList<String>>> dataList = new ArrayList<>();
+		ArrayList<ArrayList<String>> ultList = new ArrayList<>();
+		
+		while (sc.hasNextLine()) {
+			ArrayList<ArrayList<String>> warTuple = new ArrayList<>();
+			String line = sc.nextLine().trim();
+			int lineLen = line.length();
+			int positionStart = 0;
+			int positionEnd = 0;
+			int index = 0;
+			String item = "";
+			
+			while (positionStart < lineLen && index != 13) {
+				ArrayList<String> tupleColumn = new ArrayList<>();
+				positionEnd = line.indexOf(',', positionStart);
+				if (positionEnd == -1) {
+					item = line.substring(positionStart);
+				} else {
+					item = line.substring(positionStart, positionEnd);
+				}
+				
+				int positionStart1 = 0;
+				int positionEnd1 = 0;
+				String sbstr;
+				while (item.substring(positionStart1).contains("|")) {
+					positionEnd1 = item.indexOf('|', positionStart1);
+					sbstr = item.substring(positionStart1, positionEnd1).trim();
+					tupleColumn.add(sbstr);
+					positionStart1 = positionEnd1 + 1;
+				}
+				sbstr = item.substring(positionStart1).trim();
+				tupleColumn.add(sbstr);
+				
+				positionStart = positionEnd + 1;
+				warTuple.add(tupleColumn);
+				index++;
+			}
+			
+			dataList.add(warTuple);
+		}
+	
+		System.out.println(ultList.size());
+
+		
+		for (int i = 0; i < dataList.size(); i++) {
+			parse(ultList, dataList.get(i));
+		}
+		
+		System.out.println(ultList.size());
+		
+//		
+//		for (WarData d : dataList) {
+//			writer.write(d.toString());
+//		}
+//		
+		sc.close();
+		writer.close();
+		
+	}
+	
+	private static void parse(ArrayList<ArrayList<String>> ultList, ArrayList<ArrayList<String>> warTuple) {
+		ArrayList<String> resultList = new ArrayList<>();
+		parse(ultList, resultList, warTuple, 0);
+	}
+	
+	private static void parse(ArrayList<ArrayList<String>> ultList, ArrayList<String> resultList, 
+								ArrayList<ArrayList<String>> warTuple, int index) {
+		if (index == NUM_ELEMENTS) {
+			System.out.println(resultList);
+			ultList.add(resultList);
+		} else {
+			ArrayList<String> newResult = new ArrayList<>();
+			newResult.addAll(resultList);
+			for (int i = 0; i < warTuple.get(index).size(); i++) {
+				String toAdd = warTuple.get(index).get(i);
+				if (toAdd == null) {
+					newResult.add("");
+				} else {
+					newResult.add(toAdd);
+				}
+				parse(ultList, newResult, warTuple, index + 1);
+			}
+		}
+	}
+	
+	public static void main(String args[]) throws IOException {
+		File inFile = new File(INPUT_FILE);
+		File outFile = new File(OUTPUT_FILE);
+		parseHelper(inFile, outFile);
+	}
+	
+}

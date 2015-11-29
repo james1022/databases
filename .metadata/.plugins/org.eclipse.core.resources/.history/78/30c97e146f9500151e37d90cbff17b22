@@ -1,0 +1,24 @@
+public class WarData {
+	String[] data;
+	String sideTwo;
+	
+	WarData(String[] array, String sideTwo) {
+		data = new String[12];
+		this.sideTwo = sideTwo;
+		this.data = array;
+	}
+	
+	public String toString() {
+		String output = "";
+		for (int i = 0; i < 6; i++) {
+			output += data[i] + ",";
+		}
+		output += sideTwo + ",";
+		for (int i = 6; i < 11; i++) {
+			output += data[i] + ",";
+		}
+		output += data[11];
+		output += "\n";
+		return output;
+	}
+}
