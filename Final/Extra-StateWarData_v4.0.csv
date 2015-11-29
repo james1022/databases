@@ -1,6 +1,6 @@
 WarNum,WarName,WarType,ccode1,Side1,ccode2,Side2,StartYear,EndYear,Initiator,Outcome,WhereFought,BatDeath
 300,Allied Bombardment of Algiers,3,210,Netherlands,,,1816,1816,1,1,6,13
-300,Allied Bombardment of Algiers,3,200,United Kingdom,,Algeria | Korea,1816,1816,1,1,6,129
+300,Allied Bombardment of Algiers,3,200,United Kingdom,,Algeria,1816,1816,1,1,6,129
 301,Ottoman-Wahhabi,3,640,Ottoman Empire,,Saudi Wahhabis,1816,1818,1,1,6,13500
 302,Liberation of Chile,2,230,Spain,,San Martin revolutionaries,1817,1818,2,2,1,1700
 303,First Bolivar Expedition,2,230,Spain,,New Granada,1817,1819,1,2,1,3000
@@ -19,7 +19,7 @@ WarNum,WarName,WarType,ccode1,Side1,ccode2,Side2,StartYear,EndYear,Initiator,Out
 316,Russo-Persian,3,365,Russia,,Persia,1826,1828,2,1,6,5000
 317,Spanish Reconquest of Mexico,3,230,Spain,,Mexico,1829,1829,1,2,1,1700
 319,French Occupation of Algiers,3,220,France,,Algeria,1830,1830,1,1,6,600
-320,Ottoman-Bilmez-Asiri War,3,640,Ottoman Empire,,Bilmez-Asiri,1832,1837,2,1,6,0
+320,Ottoman-Bilmez-Asiri War,3,640,Ottoman Empire,,Bilmez-Asiri,1832,1837,2,1,6,
 321,First British-Zulu,3,200,United Kingdom,,Zulu tribe,1838,1838,1,2,4,800
 322,First British-Afghan,3,200,United Kingdom,,Afghanistan,1839,1842,1,2,7,20000
 323,First Opium,3,200,United Kingdom,,China,1839,1842,1,1,7,450
@@ -38,11 +38,11 @@ WarNum,WarName,WarType,ccode1,Side1,ccode2,Side2,StartYear,EndYear,Initiator,Out
 333,First British-Xhosa,3,200,United Kingdom,,Khosa,1846,1847,1,1,4,1000
 334,First Dutch-Bali,3,210,Netherlands,,Bali,1848,1848,1,6,7,300
 335,Second British-Sikh,3,200,United Kingdom,,Sikhs,1848,1849,1,1,7,1500
-336,Chinese Pirates,3,200,United Kingdom,,Chinese Pirates,1849,1849,1,1,7,
+336,Chinese Pirates,3,200,United Kingdom,,Chinese Pirates,1849,1849,1,1,7,0
 337,Second British-Xhosa,2,200,United Kingdom,,Xhosa,1850,1852,1,1,4,1400
 339,Second British-Burmese,3,200,United Kingdom,,Burma,1852,1852,1,1,7,400
 340,French-Tukulor War,3,220,France,,Tukulor,1854,1857,2,6,4,100
-341,British-Santal,2,200,United Kingdom,,Santal,1855,1856,2,1,7,0
+341,British-Santal,2,200,United Kingdom,,Santal,1855,1856,2,1,7,
 342,Hodeida Seige,2,640,Ottoman Empire,,Beni Aseer tribe,1856,1856,2,6,6,1700
 343,Second Opium,3,200,United Kingdom,,China,1856,1860,1,1,7,200
 343,Second Opium,3,220,France,,,1856,1860,1,1,7,100
@@ -94,7 +94,7 @@ WarNum,WarName,WarType,ccode1,Side1,ccode2,Side2,StartYear,EndYear,Initiator,Out
 392,First Italian-Ethiopian,3,325,Italy,,Ethiopia,1887,1887,1,3,4,1000
 393,Zambezi Conquest,3,235,Portugal,,Prazero da Cruz,1888,1888,1,1,4,
 394,First Franco-Dahomeyan,3,220,France,,Dahomey,1890,1890,1,1,4,200
-395,Franco-Jolof,3,220,France,,Jolof/Tukulor,1890,1891,1,1,4,100
+395,Franco-Jolof,3,220,France,,Jolof | Tukulor,1890,1891,1,1,4,100
 396,Second Franco-Dahomeyan,3,220,France,,Dahomey,1892,1893,1,1,4,80
 397,Belgian-Tib,3,211,Belgium,,Tippu Tib Empire,1892,1894,1,1,4,7000
 398,Third British-Ashanti,3,200,United Kingdom,,Ashanti,1893,1894,2,1,4,200
@@ -179,20 +179,20 @@ WarNum,WarName,WarType,ccode1,Side1,ccode2,Side2,StartYear,EndYear,Initiator,Out
 477,First PKK in Iraq,3,640,Turkey,,PKK in Iraq,1991,1992,1,6,6,300
 479,Second PKK in Iraq,3,640,Turkey,,PKK in Iraq,1997,1997,1,6,6,100
 480,Al Aqsa Intifada,2,666,Israel,,Palestinians,2000,2003,2,1,6,900
-481,Afghan Resistance,3,220,France,,,2001,-7,1,5,7,12
-481,Afghan Resistance,3,900,Australia,,,2001,-7,1,5,7,6
-481,Afghan Resistance,3,255,Germany,,,2001,-7,1,5,7,25
-481,Afghan Resistance,3,200,United Kingdom,,,2001,-7,1,5,7,110
-481,Afghan Resistance,3,20,Canada,,,2001,-7,1,5,7,88
-481,Afghan Resistance,3,2,United States,,al-Qaeda | Taliban,2001,-7,1,5,7,552
-481,Afghan Resistance,3,700,Afghanistan,,,2001,-7,1,5,7,1600
-482,Iraqi Resistance,3,900,Australia,,,2003,-7,1,5,6,1
-482,Iraqi Resistance,3,2,United States,,al-Qaeda | Iraqi resistence,2003,-7,1,5,6,3985
-482,Iraqi Resistance,3,200,United Kingdom,,,2003,-7,1,5,6,143
+481,Afghan Resistance,3,220,France,,,2001, ,1,5,7,12
+481,Afghan Resistance,3,900,Australia,,,2001, ,1,5,7,6
+481,Afghan Resistance,3,255,Germany,,,2001, ,1,5,7,25
+481,Afghan Resistance,3,200,United Kingdom,,,2001, ,1,5,7,110
+481,Afghan Resistance,3,20,Canada,,,2001, ,1,5,7,88
+481,Afghan Resistance,3,2,United States,,al-Qaeda | Taliban,2001, ,1,5,7,552
+481,Afghan Resistance,3,700,Afghanistan,,,2001, ,1,5,7,1600
+482,Iraqi Resistance,3,900,Australia,,,2003, ,1,5,6,1
+482,Iraqi Resistance,3,2,United States,,al-Qaeda | Iraqi resistence,2003, ,1,5,6,3985
+482,Iraqi Resistance,3,200,United Kingdom,,,2003, ,1,5,6,143
 482,Iraqi Resistance,3,210,Netherlands,,,2004,2005,2,5,6,2
 482,Iraqi Resistance,3,230,Spain,,,2004,2004,2,5,6,11
 482,Iraqi Resistance,3,290,Poland,,,2004,2006,2,5,6,23
-482,Iraqi Resistance,3,325,Italy,,,2004,-7,2,5,6,33
+482,Iraqi Resistance,3,325,Italy,,,2004, ,2,5,6,33
 482,Iraqi Resistance,3,369,Ukraine,,,2004,2005,2,5,6,18
-482,Iraqi Resistance,3,645,Iraq,,,2004,-7,2,5,6,10800
-482,Iraqi Resistance,3,732,Republic of Korea,,,2004,-7,2,5,6,1
+482,Iraqi Resistance,3,645,Iraq,,,2004, ,2,5,6,10800
+482,Iraqi Resistance,3,732,Republic of Korea,,,2004, ,2,5,6,1

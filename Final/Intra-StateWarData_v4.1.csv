@@ -33,7 +33,7 @@
 528,First Bosnian,5,640,Ottoman Empire,,Bosnians,1836,1837,,1,2,
 530,Third Murid,5,365,Russia,,Shamil,1836,1852,,1,2,
 531,Sabinada Rebellion,5,140,Brazil,,Bahian Sabinada,1837,1838,,1,1,1800
-532,Druze Rebellion,6,,"Egypt, Bashir",,Druze,1837,1838,,1,6,
+532,Druze Rebellion,6,,Egypt |  Bashir,,Druze,1837,1838,,1,6,
 533,"Second Syrian, Phase 1",5,640,Ottoman Empire,,Egypt,1839,1839,,2,6,3000
 535,Lebanon Insurgency,6,,Lebanese Maronites,,Amir Bashir | Egypt,1840,1840,,2,6,4500
 536,First Colombian,4,100,Colombia,,Progressives,1840,1842,,2,1,
@@ -124,7 +124,7 @@
 640,Ilinden,5,640,Ottoman Empire,,IMRO Rebels,1903,1903,,1,2,6330
 641,First Uruguay,4,165,Uruguay,,Blancos,1904,1904,,1,1,
 642,Second Yemen Rebellion,5,640,Ottoman Empire,,Imam Yahya's forces,1904,1906,,6,6,
-643,Bloody Sunday,4,365,Russia,,Workers/Peasants,1905,1906,,1,2,
+643,Bloody Sunday,4,365,Russia,,Workers | Peasants,1905,1906,,1,2,
 645,Romanian Peasant Revolt,4,360,Romania,,Peasants,1907,1907,,1,2,
 646,Overthrow of Abd el-Aziz,4,220,France,,,1907,1908,,2,6,
 646,Overthrow of Abd el-Aziz,4,600,Morocco,,Mulai el-Hafid,1907,1908,,2,6,1200
@@ -162,7 +162,7 @@
 687,Gilan Marxists,4,630,Iran,,SSRI,1920,1921,,1,6,
 688,Italian Fascist,7,,Blackshirts,,Leftists,1920,1922,,1,2,3300
 690,Kronstadt Rebellion,5,365,USSR,,Sailors,1921,1921,,1,2,2600
-691,Bashmachi in Turkestan,5,365,USSR,,Basmachi/Enver Pasha,1921,1923,,1,2,3500
+691,Bashmachi in Turkestan,5,365,USSR,,Basmachi | Enver Pasha,1921,1923,,1,2,3500
 692,Second Chinese Warlord,7,,Chihli army,,Fengtien army,1922,1922,,1,7,
 693,Agrarian Rising,4,355,Bulgaria,,Agrarian League,1923,1923,,1,2,
 695,De La Huerta Rebellion,4,70,Mexico,,Huerta Led Rebels,1923,1924,,1,1,
@@ -215,7 +215,7 @@
 746,Second Burmese,4,775,Burma,,Karens | Communists,1958,1960,,7,7,3150
 747,Iraq-Shammar,4,645,Iraq,,Shammar Tribe | Pro-WesternOfficers,1959,1959,,1,6,
 748,Vietnam Phase 1,4,2,United States of America,,,1961,1965,,4,7,
-748,Vietnam Phase 1,4,817,"Vietnam, Republic of",,NLF,1960,1965,,4,7,100200
+748,Vietnam Phase 1,4,817,Vietnam |  Republic of,,NLF,1960,1965,,4,7,100200
 750,First DRC (Zaire),5,,,211,Belgium,1960,1960,,1,4,
 750,First DRC (Zaire),5,490,Zaire,,Katanga | Leftists,1960,1963,,1,4,
 751,First Laotian,4,,,816,Vietnam | Democratic Rep.,1961,1962,,3,7,

@@ -48,7 +48,12 @@ public class JamesParser {
 					tupleColumn.add(sbstr);
 					positionStart1 = positionEnd1 + 1;
 				}
-				sbstr = item.substring(positionStart1).trim();
+				sbstr = item.substring(positionStart1);
+				if (sbstr == null) {
+					sbstr = "";
+				} else {
+					sbstr = sbstr.trim();
+				}
 				tupleColumn.add(sbstr);
 				
 				positionStart = positionEnd + 1;
@@ -86,6 +91,7 @@ public class JamesParser {
 	private static void parse(ArrayList<ArrayList<String>> ultList, ArrayList<String> resultList, 
 								ArrayList<ArrayList<String>> warTuple, int index) {
 		if (index == NUM_ELEMENTS) {
+			System.out.println(resultList);
 			ultList.add(resultList);
 		} else {
 			ArrayList<String> newResult = new ArrayList<>();
