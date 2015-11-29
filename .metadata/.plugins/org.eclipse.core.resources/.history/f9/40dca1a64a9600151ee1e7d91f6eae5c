@@ -10,7 +10,9 @@ public class JamesParser {
 	
 	public static final String INPUT_FILE = "Non-StateWarData_v4.0.csv";
 	public static final String OUTPUT_FILE = "non-state-table.csv";
+	
 	public static final int NUM_ELEMENTS = 13;
+
 
 	public static void parseHelper(File inFile, File outFile) throws IOException {
 		
@@ -60,8 +62,12 @@ public class JamesParser {
 				warTuple.add(tupleColumn);
 				index++;
 			}
+			
 			dataList.add(warTuple);
 		}
+	
+		System.out.println(ultList.size());
+
 		
 		for (int i = 0; i < dataList.size(); i++) {
 			parse(ultList, dataList.get(i));
@@ -88,6 +94,7 @@ public class JamesParser {
 	private static void parse(ArrayList<ArrayList<String>> ultList, ArrayList<String> resultList, 
 								ArrayList<ArrayList<String>> warTuple, int index) {
 		if (index == NUM_ELEMENTS) {
+			System.out.println(resultList);
 			ultList.add(resultList);
 		} else {
 			ArrayList<String> newResult = new ArrayList<>();
