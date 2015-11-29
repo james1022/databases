@@ -45,11 +45,13 @@ public class JamesParser {
 				while (item.substring(positionStart1).contains("|")) {
 					positionEnd1 = item.indexOf('|', positionStart1);
 					sbstr = item.substring(positionStart1, positionEnd1).trim();
-					tupleColumn.add(sbstr);
+					tupleColumn.
+					add(sbstr);
 					positionStart1 = positionEnd1 + 1;
 				}
 				sbstr = item.substring(positionStart1);
-				if (sbstr == null) {
+				if (positionStart1 == positionEnd1 && positionStart == lineLen - 1) {
+					System.out.println("here!!!!!!");
 					sbstr = "";
 				} else {
 					sbstr = sbstr.trim();
@@ -70,14 +72,15 @@ public class JamesParser {
 		for (int i = 0; i < dataList.size(); i++) {
 			parse(ultList, dataList.get(i));
 		}
-		
-		System.out.println(ultList.size());
-		
-//		
-//		for (WarData d : dataList) {
-//			writer.write(d.toString());
-//		}
-//		
+	
+		for (int i = 0; i < ultList.size(); i++) {
+			ArrayList<String> oneTuple = ultList.get(i);
+			for (int j = 0; j < oneTuple.size() - 1; j++) {
+				writer.write(oneTuple.get(j) + ",");
+			}
+			writer.write(oneTuple.get(oneTuple.size() - 1) + "\n");
+		}
+
 		sc.close();
 		writer.close();
 		
@@ -85,11 +88,11 @@ public class JamesParser {
 	
 	private static void parse(ArrayList<ArrayList<String>> ultList, ArrayList<ArrayList<String>> warTuple) {
 		ArrayList<String> resultList = new ArrayList<>();
-		parse(ultList, resultList, warTuple, 0);
+		parse(ultList, resultList, warTuple, 0, 0);
 	}
 	
 	private static void parse(ArrayList<ArrayList<String>> ultList, ArrayList<String> resultList, 
-								ArrayList<ArrayList<String>> warTuple, int index) {
+								ArrayList<ArrayList<String>> warTuple, int index, int currListIndex) {
 		if (index == NUM_ELEMENTS) {
 			System.out.println(resultList);
 			ultList.add(resultList);
@@ -97,8 +100,11 @@ public class JamesParser {
 			ArrayList<String> newResult = new ArrayList<>();
 			newResult.addAll(resultList);
 			for (int i = 0; i < warTuple.get(index).size(); i++) {
-				newResult.add(warTuple.get(index).get(i));
-				parse(ultList, newResult, warTuple, index + 1);
+				if (newResult.size() == index + 1) {
+					newResult.remove(index);
+				}
+				newResult.add(currListIndex, warTuple.get(index).get(i));
+				parse(ultList, newResult, warTuple, index + 1, currListIndex + 1);
 			}
 		}
 	}
