@@ -6,12 +6,13 @@ import java.util.Scanner;
 
 public class JamesParser {
 	
-	private static int count = 0;
-	private static final String INPUT_FILE = "Non-StateWarData_v4.0.csv";
-	private static final String OUTPUT_FILE = "non-state-table.csv";
-	private static final int NUM_ELEMENTS = 13;
+	static int count = 0;
+	
+	public static final String INPUT_FILE = "Non-StateWarData_v4.0.csv";
+	public static final String OUTPUT_FILE = "non-state-table.csv";
+	public static final int NUM_ELEMENTS = 13;
 
-	private static void parseHelper(File inFile, File outFile) throws IOException {
+	public static void parseHelper(File inFile, File outFile) throws IOException {
 		
 		Scanner sc = new Scanner(inFile);
 		FileWriter writer = new FileWriter(outFile);
@@ -105,7 +106,6 @@ public class JamesParser {
 		File inFile = new File(INPUT_FILE);
 		File outFile = new File(OUTPUT_FILE);
 		parseHelper(inFile, outFile);
-		System.out.println("Parsing successful!");
 	}
 	
 }

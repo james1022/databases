@@ -105,7 +105,6 @@ public class JamesParser {
 		File inFile = new File(INPUT_FILE);
 		File outFile = new File(OUTPUT_FILE);
 		parseHelper(inFile, outFile);
-		System.out.println("Parsing successful!");
 	}
 	
 }
