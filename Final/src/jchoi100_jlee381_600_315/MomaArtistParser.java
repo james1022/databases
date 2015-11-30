@@ -1,5 +1,7 @@
 package jchoi100_jlee381_600_315;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,11 +38,12 @@ public class MomaArtistParser {
 	
 	private static void tupleSeparator(ArrayList<ArrayList<ArrayList<String>>> tupleList, 
 										File inFile, File outFile) throws IOException {
+		BufferedReader br = new BufferedReader(new FileReader("Artist 1-5000 - Sheet1.csv"));
 		Scanner sc = new Scanner(inFile);
-		while (sc.hasNextLine()) {
+		String line;
+		while ((line = br.readLine()) != null) {
 			//Get one tuple. A tuple may possibly have several artists in it.
 			ArrayList<ArrayList<String>> artistTuple = new ArrayList<>();
-			String line = sc.nextLine().trim();
 			int lineLen = line.length();
 			int positionStart = 0;
 			int positionEnd = 0;
@@ -95,6 +98,7 @@ public class MomaArtistParser {
 			tupleList.add(artistTuple);
 		}
 		sc.close();
+		br.close();
 	}
 	
 	private static void parse(ArrayList<ArrayList<String>> ultList, 
