@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class MomaArtistParser {
 	
-	private static final String INPUT_FILE = "artist.csv";
+	private static final String INPUT_FILE = "Artist 1-5000 - Sheet1.csv";
 	private static final String OUTPUT_FILE = "artist-table-parsed.csv";
 	private static final int NUM_ELEMENTS = 3;
 
