@@ -13,6 +13,7 @@ public class WorkedOnTableMaker {
 
 	private static final String INPUT_FILE = "artist-table-parsed.csv";
 	private static final String OUTPUT_FILE = "workedon-table-final.csv";
+	private static final String SQL_FILE = "worked_on.sql";
 	private static final String ERROR_FILE = "workedon-table-final-error.csv";
 	private static final int NUM_ELEMENTS = 3;
 	private static HashSet<String> workedOn = new HashSet<>();
@@ -21,12 +22,20 @@ public class WorkedOnTableMaker {
 	private static void parse(File inFile, File outFile, File errorFile) throws IOException {
 		FileWriter writer = new FileWriter(outFile);
 		FileWriter errorWriter = new FileWriter(errorFile);
+		FileWriter sqlWriter = new FileWriter(SQL_FILE);
 		ArrayList<WorkedOnTuple> tupleList = new ArrayList<>();
 		tupleSeparator(tupleList, inFile, outFile);
-		
+
 		writer.write("ArtistName,ArtistBornYear,ObjectId\n");
 		errorWriter.write("ArtistName,ArtistBornYear,ObjectId\n");
-		
+		sqlWriter.write("DROP TABLE WorkedOn;\n");
+		sqlWriter.write("CREATE TABLE IF NOT EXISTS WorkedOn(\n");
+		sqlWriter.write("    ArtistName       VARCHAR(74) NOT NULL\n");
+		sqlWriter.write("   ,ArtistBornYear   INTEGER NOT NULL\n");
+		sqlWriter.write("   ,ObjectId         INTEGER NOT NULL\n");
+		sqlWriter.write("   ,PRIMARY KEY(ArtistName,ArtistBornYear,ObjectId)\n");
+		sqlWriter.write(");\n");
+
 		//Write the result in a csv file
 		for (int i = 0; i < tupleList.size(); i++) {
 			WorkedOnTuple oneTuple = tupleList.get(i);
@@ -35,6 +44,7 @@ public class WorkedOnTableMaker {
 				if (!workedOn.contains(key)) {
 					workedOn.add(key);
 					writer.write(oneTuple.toString() + "\n");
+					sqlWriter.write(oneTuple.sqlStatement() + "\n");
 				}
 			} else {
 				String key = oneTuple.artistName + oneTuple.artistBornYear + oneTuple.objectId;
@@ -45,6 +55,7 @@ public class WorkedOnTableMaker {
 			}
 		}
 		writer.close();
+		sqlWriter.close();
 		errorWriter.close();
 	}
 	

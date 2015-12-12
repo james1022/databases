@@ -17,6 +17,22 @@ public class WorkedOnTuple {
 		return this.artistName + "," + this.artistBornYear + "," + this.objectId;
 	}
 	
+	public String sqlStatement() {
+		String name = this.artistName;
+		int marker = 0;
+		
+		while (this.artistName.indexOf('\'', marker) != -1) {
+			int index = this.artistName.indexOf('\'', marker);
+			String first = name.substring(0, index);
+			String last = name.substring(index);
+			name = (first + '\'' + last);
+			marker = index + 1;
+		}
+		
+		return "INSERT INTO WorkedOn(ArtistName,ArtistBornYear,ObjectId) VALUES ('" 
+				+ name + "'," + this.artistBornYear + "," + this.objectId + ");";
+	}
+	
 	
 	@Override
 	public boolean equals(Object o) {
