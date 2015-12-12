@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class MomaArtistParser {
 	
-	private static final String INPUT_FILE = "Artist 1-5000 - Sheet1.csv";
+	private static final String INPUT_FILE = "Artist - Sheet1.csv";
 	private static final String OUTPUT_FILE = "artist-table-parsed.csv";
 	private static final int NUM_ELEMENTS = 3;
 
@@ -37,7 +37,7 @@ public class MomaArtistParser {
 	
 	private static void tupleSeparator(ArrayList<ArrayList<ArrayList<String>>> tupleList, 
 										File inFile, File outFile) throws IOException {
-		BufferedReader br = new BufferedReader(new FileReader("Artist 1-5000 - Sheet1.csv"));
+		BufferedReader br = new BufferedReader(new FileReader(INPUT_FILE));
 		String line;
 		while ((line = br.readLine()) != null) {
 			//Get one tuple. A tuple may possibly have several artists in it.
