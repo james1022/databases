@@ -1,0 +1,227 @@
+Select ObjectId, count(ObjectId) as numWorks from WorkedOn group by ObjectId
+having count(ObjectId) >= all
+(select count(ObjectId) from WorkedOn group by ObjectId);
+
+select ArtistName, count(ObjectId) from WorkedOn
+group by ArtistName, ArtistBornYear
+having count(ObjectId) >= all (
+select count(ObjectId) from WorkedOn group by ArtistName, ArtistBornYear);
+
+select A.year, avg(A.width * A.height) from Artwork A, Wars W
+where W.WarName = 'World War I'
+and A.depth IS NULL
+and A.year >= W.startYear and A.year <= W.endYear group by A.year;
+
+
+
+
+
+
+DELIMITER //
+
+DROP PROCEDURE IF EXISTS AverageSizeDuringWar //
+CREATE PROCEDURE AverageSizeDuringWar(IN title VARCHAR(20))
+BEGIN
+  DECLARE foundWarName VARCHAR(20);
+
+  DECLARE cur CURSOR FOR
+  SELECT WarName
+  FROM Wars
+  WHERE WarName = title;
+
+  DECLARE EXIT HANDLER FOR NOT FOUND
+    SELECT 'SORRY, not found' AS 'Error Message';
+
+  OPEN cur;
+  FETCH cur INTO foundWarName;
+  CLOSE cur;
+
+  SELECT A.year, ROUND(AVG(A.width * A.height), 2) as Average
+  FROM Artwork A, Wars W
+  WHERE W.WarName = foundWarName
+    AND A.depth IS NULL
+    AND A.year >= W.StartYear
+    AND A.year <= W.EndYear
+  GROUP BY A.YEAR;
+END
+//
+
+DROP PROCEDURE IF EXISTS AverageSizeFromNation //
+CREATE PROCEDURE AverageSizeFromNation(IN nation VARCHAR(30))
+BEGIN
+  DECLARE foundDemonym VARCHAR(30);
+
+  DECLARE cur1 CURSOR FOR
+  SELECT Demonym
+  FROM Demonym
+  Where nation = Country;
+
+  DECLARE EXIT HANDLER FOR NOT FOUND
+    SELECT 'SORRY, not found' AS 'Error Message';
+
+  OPEN cur1;
+  FETCH cur1 INTO foundDemonym;
+  CLOSE cur1;
+
+  SELECT At.ArtistNationality, ROUND(AVG(A.width * A.height), 2) as Average
+  FROM Artwork A, Artists At, WorkedOn W
+  WHERE W.ArtistName = At.ArtistName
+    AND W.ArtistBornYear = At.ArtistBornYear
+    AND At.ArtistNationality = foundDemonym
+    AND W.ObjectId = A.ObjectId
+  GROUP BY At.ArtistNationality;
+END
+//
+
+
+(modified so that it outputs size)
+
+DROP PROCEDURE IF EXISTS AverageSizeFromNation //
+CREATE PROCEDURE AverageSizeFromNation(IN nation VARCHAR(30), OUT size DECIMAL(10,2))
+BEGIN
+  DECLARE foundDemonym VARCHAR(30);
+
+  DECLARE cur1 CURSOR FOR
+  SELECT Demonym
+  FROM Demonym
+  Where nation = Country;
+
+  DECLARE EXIT HANDLER FOR NOT FOUND
+    SELECT 'SORRY, not found' AS 'Error Message';
+
+  OPEN cur1;
+  FETCH cur1 INTO foundDemonym;
+  CLOSE cur1;
+
+  SET size = (
+  SELECT ROUND(AVG(A.width * A.height), 2) as Average
+  FROM Artwork A, Artists At, WorkedOn W
+  WHERE W.ArtistName = At.ArtistName
+    AND W.ArtistBornYear = At.ArtistBornYear
+    AND At.ArtistNationality = foundDemonym
+    AND W.ObjectId = A.ObjectId
+  GROUP BY At.ArtistNationality);
+END
+//
+
+
+DROP PROCEDURE IF EXISTS CompareAverageSizeByNation //
+CREATE PROCEDURE CompareAverageSizeByNation(IN nation1 VARCHAR(30), IN nation2 VARCHAR(30), OUT ratio DECIMAL(10, 2))
+BEGIN
+  DECLARE foundSize1 DECIMAL(10, 2);
+  DECLARE foundSize2 DECIMAL(10, 2);
+
+  DECLARE EXIT HANDLER FOR NOT FOUND
+    SELECT 'SORRY, not found' AS 'Error Message';
+
+  CALL AverageSizeFromNation(nation1, @size1);
+  CALL AverageSizeFromNation(nation2, @size2);
+
+  SET foundSize1 = (SELECT @size1);
+  SET foundSize2 = (SELECT @size2);
+
+  SET ratio = ROUND((foundSize1 / foundSize2), 2);
+END
+//
+
+
+(only arts)
+
+DROP PROCEDURE IF EXISTS ShowCreditByArtistNation //
+CREATE PROCEDURE ShowCreditByArtistNation(IN nation VARCHAR(30), OUT numPurchase INTEGER, OUT numGift INTEGER)
+BEGIN
+  DECLARE foundDemonym VARCHAR(30);
+
+  DECLARE cur1 CURSOR FOR
+  SELECT Demonym
+  FROM Demonym
+  Where nation = Country;
+
+  DECLARE EXIT HANDLER FOR NOT FOUND
+    SELECT 'SORRY, not found' AS 'Error Message';
+
+  OPEN cur1;
+  FETCH cur1 INTO foundDemonym;
+  CLOSE cur1;
+
+  SET numPurchase = (
+    SELECT count(A.ObjectId)
+    FROM Artwork A, Artists At, WorkedOn W
+    WHERE A.ObjectId = W.ObjectId
+      AND W.ArtistName = At.ArtistName
+      AND W.ArtistBornYear = At.ArtistBornYear
+      AND At.ArtistNationality = foundDemonym
+      AND A.CreditLine LIKE '%Purchase%');
+
+  SET numGift = (
+    SELECT count(A.ObjectId)
+    FROM Artwork A, Artists At, WorkedOn W
+    WHERE A.ObjectId = W.ObjectId
+      AND W.ArtistName = At.ArtistName
+      AND W.ArtistBornYear = At.ArtistBornYear
+      AND At.ArtistNationality = foundDemonym
+      AND A.CreditLine LIKE '%Gift%');
+
+END
+//
+
+
+(includes film)
+
+DROP PROCEDURE IF EXISTS ShowCreditByArtistNation //
+CREATE PROCEDURE ShowCreditByArtistNation(IN nation VARCHAR(30), OUT numPurchase INTEGER, OUT numGift INTEGER)
+BEGIN
+  DECLARE foundDemonym VARCHAR(30);
+
+  DECLARE cur1 CURSOR FOR
+  SELECT Demonym
+  FROM Demonym
+  Where nation = Country;
+
+  DECLARE EXIT HANDLER FOR NOT FOUND
+    SELECT 'SORRY, not found' AS 'Error Message';
+
+  OPEN cur1;
+  FETCH cur1 INTO foundDemonym;
+  CLOSE cur1;
+
+  SET numPurchase = (
+    SELECT SUM(K.count) as sum
+    FROM ((
+      SELECT count(A.ObjectId) as count
+      FROM Artwork A, Artists At, WorkedOn W
+      WHERE A.ObjectId = W.ObjectId
+        AND W.ArtistName = At.ArtistName
+        AND W.ArtistBornYear = At.ArtistBornYear
+        AND At.ArtistNationality = foundDemonym
+        AND A.CreditLine LIKE '%Purchase%')
+    UNION (
+      SELECT count(F.ObjectId) as count
+      FROM Film F, Artists At, WorkedOn W
+      WHERE F.ObjectId = W.ObjectId
+        AND W.ArtistName = At.ArtistName
+        AND W.ArtistBornYear = At.ArtistBornYear
+        AND At.ArtistNationality = foundDemonym
+        AND F.CreditLine LIKE '%Purchase%')) as K);
+
+  SET numGift = (
+    SELECT SUM(K.count) as sum
+    FROM ((
+      SELECT count(A.ObjectId) as count
+      FROM Artwork A, Artists At, WorkedOn W
+      WHERE A.ObjectId = W.ObjectId
+        AND W.ArtistName = At.ArtistName
+        AND W.ArtistBornYear = At.ArtistBornYear
+        AND At.ArtistNationality = foundDemonym
+        AND A.CreditLine LIKE '%Gift%')
+    UNION (
+      SELECT count(F.ObjectId) as count
+      FROM Film F, Artists At, WorkedOn W
+      WHERE F.ObjectId = W.ObjectId
+        AND W.ArtistName = At.ArtistName
+        AND W.ArtistBornYear = At.ArtistBornYear
+        AND At.ArtistNationality = foundDemonym
+        AND F.CreditLine LIKE '%Gift%')) as K);
+
+END
+//
