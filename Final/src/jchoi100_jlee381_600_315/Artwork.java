@@ -87,13 +87,12 @@ public class Artwork {
 		if (this.objectId == -1) {
 			return true;
 		}
-		if (this.title.equals("error") || this.year.equals("error") || this.medium.equals("error")
-			|| this.yearAcquired.equals("error")) {
+		if (this.title.equals("error") || this.year.equals("error") || this.medium.equals("error")) {
 			return true;
 		}
-		if (this.height == null && this.width == null) {
-			return true;
-		}
+//		if (this.height == null && this.width == null) {
+//			return true;
+//		}
 		return false;
 	}
 	

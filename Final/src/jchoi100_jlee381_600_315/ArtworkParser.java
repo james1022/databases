@@ -1,6 +1,7 @@
 package jchoi100_jlee381_600_315;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -10,10 +11,10 @@ import java.util.HashSet;
 
 public class ArtworkParser {
 
-	private static final String INPUT_FILE = "Art 100001-end.csv";
+	private static final String INPUT_FILE = "Art 100001-end - Sheet1.csv";
 	private static final String OUTPUT_FILE = "artwork-table-parsed-100001-end.csv";
 	private static final String ERROR_FILE = "artwork-table-final-error-100001-end.csv";
-	private static final String SQL_FILE = "artwork-100001-end.sql";
+	private static final String SQL_FILE = "artwork.sql";
 	private static final int NUM_ELEMENTS = 10;
 	private static HashSet<String> artwork = new HashSet<>();
 	private static HashSet<String> errorArtwork = new HashSet<>();
@@ -21,13 +22,13 @@ public class ArtworkParser {
 	private static void parse(File inFile, File outFile, File errorFile) throws IOException {
 		FileWriter writer = new FileWriter(outFile);
 		FileWriter errorWriter = new FileWriter(errorFile);
-		FileWriter sqlWriter = new FileWriter(SQL_FILE);
+		BufferedWriter sqlWriter = new BufferedWriter(new FileWriter(SQL_FILE, true));
 		ArrayList<Artwork> tupleList = new ArrayList<>();
 		tupleSeparator(tupleList, inFile, outFile);
 		
 		sqlWriter.write("CREATE TABLE IF NOT EXISTS Artwork(\n");
 		sqlWriter.write("    Title       VARCHAR(100)\n");
-		sqlWriter.write("   ,Year   INTEGER NOT NULL\n");
+		sqlWriter.write("   ,Year   INTEGER\n");
 		sqlWriter.write("   ,Medium         VARCHAR(80)\n");
 		sqlWriter.write("   ,Width         DECIMAL(10,2)\n");
 		sqlWriter.write("   ,Height         DECIMAL(10,2)\n");
@@ -95,18 +96,37 @@ public class ArtworkParser {
 					break;
 					
 				case 1: //year
+					
+					boolean flag = false;
+					int count = 0;
+					for (int i = 0; i < item.length(); i++) {
+						if (item.charAt(i) == '/') {
+							count++;
+						}
+					}
+					if (count == 2) {
+						flag = true;
+					}
+					
 					if (item.contains("c. ")) {
 						item = item.substring(3, 7);
 					} else if (item.contains("c.")) {
 						item = item.substring(2, 6);
 					} else if (item.contains("Unknown") || item.length() == 0 || item.contains("n.d")) {
 						item = "-1";
-					} else if (item.contains("after")) {
+					} else if (item.contains("after") || item.contains("After")) {
 						item = item.substring(6, 10) + "";
-					} else if (item.contains("early")) {
+					} else if (item.contains("early") || item.contains("Early")) {
 						item = item.substring(6, 10) + "";
-					} else if (item.contains("before")) {
+					} else if (item.contains("before") || item.contains("Before")) {
 						item = item.substring(7, 11) + "";
+					} else if (flag) {
+						int lastIndex = item.lastIndexOf('/');
+						item = item.substring(lastIndex + 1, lastIndex + 5); 
+					} else if (item.contains("newspaper")) {
+						item = item.substring(item.length() - 5, item.length() - 1);
+					} else if (item.charAt(0) == '-') {
+						item = item.substring(1, 5);
 					} else {
 						item = item.substring(0, 4);
 					}
@@ -121,7 +141,6 @@ public class ArtworkParser {
 					if (item.contains("(") && item.contains(")")) {
 						int leftParenIndex = item.indexOf('(');
 						int rightParenIndex = item.indexOf(')');
-						System.out.println(item);
 						item = item.substring(leftParenIndex + 1, rightParenIndex);
 						int countMult = 0;
 						int[] multIndices = new int[2];
@@ -192,9 +211,9 @@ public class ArtworkParser {
 					try {
 						artworkToAdd.yearAcquired = item.substring(item.length() - 4);
 					} catch(NumberFormatException e) {
-						artworkToAdd.yearAcquired = "error";
+						artworkToAdd.yearAcquired = "-1";
 					} catch(StringIndexOutOfBoundsException se) {
-						artworkToAdd.yearAcquired = "error";
+						artworkToAdd.yearAcquired = "-1";
 					}
 					break;
 					
