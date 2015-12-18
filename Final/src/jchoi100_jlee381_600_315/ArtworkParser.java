@@ -12,10 +12,10 @@ import java.util.Scanner;
 
 public class ArtworkParser {
 
-	private static final String INPUT_FILE = "Art 100001-end - Sheet1.csv";
-	private static final String OUTPUT_FILE = "artwork-table-parsed-100001-end.csv";
-	private static final String ERROR_FILE = "artwork-table-final-error-100001-end.csv";
-	private static final String SQL_FILE = "artwork.sql";
+	private static final String INPUT_FILE = "Art 60001-80000 - Sheet1.csv";
+	private static final String OUTPUT_FILE = "tmp1.csv";
+	private static final String ERROR_FILE = "tmp2.csv";
+	private static final String SQL_FILE = "tmpsql.sql";
 	private static final int NUM_ELEMENTS = 10;
 	private static HashSet<String> artwork = new HashSet<>();
 	private static HashSet<String> errorArtwork = new HashSet<>();
