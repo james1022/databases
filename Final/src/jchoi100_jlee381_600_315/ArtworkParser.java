@@ -11,10 +11,10 @@ import java.util.HashSet;
 
 public class ArtworkParser {
 
-	private static final String INPUT_FILE = "Art 100001-end - Sheet1.csv";
-	private static final String OUTPUT_FILE = "artwork-table-parsed-100001-end.csv";
-	private static final String ERROR_FILE = "artwork-table-final-error-100001-end.csv";
-	private static final String SQL_FILE = "artwork.sql";
+	private static final String INPUT_FILE = "Art 60001-80000 - Sheet1.csv";
+	private static final String OUTPUT_FILE = "tmp1.csv";
+	private static final String ERROR_FILE = "tmp2.csv";
+	private static final String SQL_FILE = "tmpsql.sql";
 	private static final int NUM_ELEMENTS = 10;
 	private static HashSet<String> artwork = new HashSet<>();
 	private static HashSet<String> errorArtwork = new HashSet<>();
@@ -128,7 +128,10 @@ public class ArtworkParser {
 					} else if (item.charAt(0) == '-') {
 						item = item.substring(1, 5);
 					} else {
-						item = item.substring(0, 4);
+					    String str = item;  
+					    str = str.replaceAll("[^0-9]+", "").trim();
+					    System.out.println(str);
+					    item = str.substring(str.length() - 4, str.length());
 					}
 					artworkToAdd.year = item.trim();
 					break;
