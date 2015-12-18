@@ -1,5 +1,5 @@
-DROP TABLE Demonym;
-CREATE TABLE IF NOT EXISTS Demonym(
+DROP TABLE IF EXISTS Demonym;
+CREATE TABLE Demonym(
    Country VARCHAR(35) NOT NULL PRIMARY KEY
   ,Demonym VARCHAR(25) NOT NULL
 );
@@ -107,11 +107,10 @@ INSERT INTO Demonym(Country,Demonym) VALUES ('Jordan','Jordanian');
 INSERT INTO Demonym(Country,Demonym) VALUES ('Kazakhstan','Kazakhstani');
 INSERT INTO Demonym(Country,Demonym) VALUES ('Kenya','Kenyan');
 INSERT INTO Demonym(Country,Demonym) VALUES ('Kiribati','I-Kiribati');
-INSERT INTO Demonym(Country,Demonym) VALUES ('Korea, North','North Korean');
-INSERT INTO Demonym(Country,Demonym) VALUES ('Korea, South','South Korean');
+INSERT INTO Demonym(Country,Demonym) VALUES ('Korea','Korean');
 INSERT INTO Demonym(Country,Demonym) VALUES ('Kuwait','Kuwaiti');
 INSERT INTO Demonym(Country,Demonym) VALUES ('Kyrgyz Republic','Kyrgyz');
-INSERT INTO Demonym(Country,Demonym) VALUES ('Laos','Lao or Laotian');
+INSERT INTO Demonym(Country,Demonym) VALUES ('Laos','Laotian');
 INSERT INTO Demonym(Country,Demonym) VALUES ('Latvia','Latvian');
 INSERT INTO Demonym(Country,Demonym) VALUES ('Lebanon','Lebanese');
 INSERT INTO Demonym(Country,Demonym) VALUES ('Lesotho','Basotho');
