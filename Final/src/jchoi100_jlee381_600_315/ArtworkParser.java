@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Scanner;
 
 public class ArtworkParser {
 
@@ -26,21 +27,21 @@ public class ArtworkParser {
 		ArrayList<Artwork> tupleList = new ArrayList<>();
 		tupleSeparator(tupleList, inFile, outFile);
 		
-		sqlWriter.write("CREATE TABLE IF NOT EXISTS Artwork(\n");
-		sqlWriter.write("    Title       VARCHAR(100)\n");
-		sqlWriter.write("   ,Year   INTEGER\n");
-		sqlWriter.write("   ,Medium         VARCHAR(80)\n");
-		sqlWriter.write("   ,Width         DECIMAL(10,2)\n");
-		sqlWriter.write("   ,Height         DECIMAL(10,2)\n");
-		sqlWriter.write("   ,Depth         DECIMAL(10,2)\n");
-		sqlWriter.write("   ,CreditLine         VARCHAR(70)\n");
-		sqlWriter.write("   ,Classification         VARCHAR(30)\n");
-		sqlWriter.write("   ,Department         VARCHAR(30)\n");
-		sqlWriter.write("   ,YearAcquired         INTEGER\n");
-		sqlWriter.write("   ,CuratorApproved         VARCHAR(2)\n");
-		sqlWriter.write("   ,ObjectId         INTEGER NOT NULL\n");
-		sqlWriter.write("   ,PRIMARY KEY(ObjectId)\n");
-		sqlWriter.write(");\n");
+//		sqlWriter.write("CREATE TABLE IF NOT EXISTS Artwork(\n");
+//		sqlWriter.write("    Title       VARCHAR(100)\n");
+//		sqlWriter.write("   ,Year   	INTEGER\n");
+//		sqlWriter.write("   ,Medium         VARCHAR(80)\n");
+//		sqlWriter.write("   ,Width         DECIMAL(10,2)\n");
+//		sqlWriter.write("   ,Height         DECIMAL(10,2)\n");
+//		sqlWriter.write("   ,Depth         DECIMAL(10,2)\n");
+//		sqlWriter.write("   ,CreditLine         VARCHAR(70)\n");
+//		sqlWriter.write("   ,Classification         VARCHAR(30)\n");
+//		sqlWriter.write("   ,Department         VARCHAR(30)\n");
+//		sqlWriter.write("   ,YearAcquired         INTEGER\n");
+//		sqlWriter.write("   ,CuratorApproved         VARCHAR(2)\n");
+//		sqlWriter.write("   ,ObjectId         INTEGER NOT NULL\n");
+//		sqlWriter.write("   ,PRIMARY KEY(ObjectId)\n");
+//		sqlWriter.write(");\n");
 
 		writer.write("Title,Year,Medium,Width,Height,Depth,CreditLine,Classification,Department,YearAcquired,CuratorApproved,ObjectID\n");
 		errorWriter.write("Title,Year,Medium,Width,Height,Depth,CreditLine,Classification,Department,YearAcquired,CuratorApproved,ObjectID\n");
@@ -128,10 +129,28 @@ public class ArtworkParser {
 					} else if (item.charAt(0) == '-') {
 						item = item.substring(1, 5);
 					} else {
-					    String str = item;  
-					    str = str.replaceAll("[^0-9]+", "").trim();
-					    System.out.println(str);
-					    item = str.substring(str.length() - 4, str.length());
+						Scanner sc = new Scanner(item);
+						boolean matchFound = false;
+						while (sc.hasNext()) {
+							String temp = sc.next();
+							if (temp.length() < 4) {
+								continue;
+							}
+							if (temp.contains("(") && temp.length() >= 5) {
+								temp = temp.substring(1, 5);
+							} else {
+								temp = temp.substring(0, 4);
+							}
+							if (isNumeric(temp) && Integer.parseInt(temp) < 2016) {
+								matchFound = true;
+								item = temp;
+								break;
+							}
+						}
+						if (!matchFound) {
+							item = "-1";
+						}
+						sc.close();
 					}
 					artworkToAdd.year = item.trim();
 					break;
