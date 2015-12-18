@@ -88,7 +88,6 @@ public class WorkedOnTableMaker {
 				} else if (index == 1) { //column 1: artist bio. ex) American | born Germany 1930-1999
 					positionEnd1 = item.indexOf('|', positionStart1);
 					if (positionEnd1 != -1) {
-						String nationality = item.substring(positionStart1, positionEnd1); //American
 						String bornPart = item.substring(positionEnd1); // born Germany 1945
 						
 						positionStart1 = positionEnd1;
