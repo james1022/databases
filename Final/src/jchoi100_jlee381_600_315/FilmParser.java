@@ -10,9 +10,9 @@ import java.util.HashSet;
 
 public class FilmParser {
 
-	private static final String INPUT_FILE = "Films.csv";
-	private static final String OUTPUT_FILE = "film-table-parsed.csv";
-	private static final String ERROR_FILE = "film-table-final-error.csv";
+	private static final String INPUT_FILE = "films.csv";
+	private static final String OUTPUT_FILE = "out-film.csv";
+	private static final String ERROR_FILE = "error-film.csv";
 	private static final String SQL_FILE = "films.sql";
 	private static final int NUM_ELEMENTS = 10;
 	private static HashSet<String> artwork = new HashSet<>();
@@ -183,7 +183,8 @@ public class FilmParser {
 	
 	private static boolean isNumeric(String str) {  
 	  try {  
-	    double d = Double.parseDouble(str);
+	    @SuppressWarnings("unused")
+		double d = Double.parseDouble(str);
 	  } catch(NumberFormatException nfe) {  
 	    return false;  
 	  }  

@@ -90,9 +90,6 @@ public class Artwork {
 		if (this.title.equals("error") || this.year.equals("error") || this.medium.equals("error")) {
 			return true;
 		}
-//		if (this.height == null && this.width == null) {
-//			return true;
-//		}
 		return false;
 	}
 	

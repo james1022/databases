@@ -1,0 +1,116 @@
+WarNum,WarName,WarType,ccode1,SideA,ccode2,SideB,StartMonth1,StartDay1,StartYear1,EndMonth1,EndDay1,EndYear1
+300,Allied Bombardment of Algiers,3,210,Netherlands,-8,-8,8,26,1816,8,30,1816
+300,Allied Bombardment of Algiers,3,200,United Kingdom,-8,Algeria,8,26,1816,8,30,1816
+301,Ottoman-Wahhabi,3,640,Ottoman Empire,-8,Saudi Wahhabis,9,-9,1816,9,11,1818
+302,Liberation of Chile,2,230,Spain,-8,San Martin revolutionaries,1,9,1817,4,5,1818
+303,First Bolivar Expedition,2,230,Spain,-8,New Granada,4,11,1817,8,10,1819
+304,Mexican Independence,2,230,Spain,-8,Mina Expedition,8,15,1817,1,1,1818
+305,British-Kandyan,2,200,United Kingdom,-8,Kandyan rebels,10,-9,1817,11,26,1818
+306,British-Maratha,2,200,United Kingdom,-8,Marathas,11,6,1817,6,3,1818
+307,Ottoman Conquest of Sudan,3,640,Ottoman Empire,-8,Sudan states,-9,-9,1820,6,-9,1821
+308,Second Bolivar Expedition,2,230,Spain,-8,New Granada,4,28,1821,5,24,1822
+309,Turco-Persian,3,640,Ottoman Empire,-8,Persia,8,-9,1821,5,-9,1822
+310,First British-Burmese,3,200,United Kingdom,-8,Burma,9,24,1823,2,24,1826
+311,First British-Ashanti,3,200,United Kingdom,-8,Ashanti-Ghana,1,20,1824,8,7,1826
+312,Liberation of Peru,2,230,Spain,-8,Latin American revolutionaries,2,4,1824,4,2,1825
+313,Dutch - Javanese,2,210,Netherlands,-8,Javanese rebels,7,23,1825,3,28,1830
+314,British-Bharatpuran,2,200,United Kingdom,-8,Bharatpuran rebels,11,23,1825,1,18,1826
+315,Brazil-Argentine,3,140,Brazil,-8,Argentina,1,1,1826,10,27,1828
+316,Russo-Persian,3,365,Russia,-8,Persia,9,28,1826,2,28,1828
+317,Spanish Reconquest of Mexico,3,230,Spain,-8,Mexico,7,16,1829,9,11,1829
+319,French Occupation of Algiers,3,220,France,-8,Algeria,6,12,1830,7,5,1830
+320,Ottoman-Bilmez-Asiri War,3,640,Ottoman Empire,-8,Bilmez-Asiri,6,-9,1832,-9,-9,1837
+321,First British-Zulu,3,200,United Kingdom,-8,Zulu tribe,4,17,1838,4,-9,1838
+322,First British-Afghan,3,200,United Kingdom,-8,Afghanistan,2,14,1839,10,12,1842
+323,First Opium,3,200,United Kingdom,-8,China,9,4,1839,8,29,1842
+324,First Franco-Algerian,3,220,France,-8,Algerian forces,11,1,1839,12,23,1847
+325,Peru-Bolivian,3,135,Peru,-8,Bolivia,10,19,1841,11,28,1841
+326,British-Sind,3,200,United Kingdom,-8,Sind,1,6,1843,6,14,1843
+327,Uruguay War,3,160,Argentina,-8,Uruguay,2,16,1843,7,18,1851
+327,Uruguay War,3,-8,-8,200,United Kingdom,1,-9,1845,3,6,1849
+327,Uruguay War,3,-8,-8,220,France,1,-9,1845,5,24,1849
+329,Gwalior,3,200,United Kingdom,-8,Gwalior,12,28,1843,12,29,1843
+330,Franco-Moroccan,3,220,France,-8,Morocco,8,6,1844,9,10,1844
+331,First British-Sikh,3,200,United Kingdom,-8,Sikhs,12,13,1845,2,10,1846
+332,Cracow Revolt,3,365,Russia,-8,-8,2,-9,1846,3,3,1846
+332,Cracow Revolt,3,255,Prussia,-8,-8,2,-9,1846,3,3,1846
+332,Cracow Revolt,3,300,Austria,-8,Cracow,2,15,1846,3,3,1846
+333,First British-Xhosa,3,200,United Kingdom,-8,Khosa,4,16,1846,12,23,1847
+334,First Dutch-Bali,3,210,Netherlands,-8,Bali,4,12,1848,6,21,1848
+335,Second British-Sikh,3,200,United Kingdom,-8,Sikhs,5,18,1848,3,10,1849
+336,Chinese Pirates,3,200,United Kingdom,-8,Chinese Pirates,10,20,1849,10,22,1849
+337,Second British-Xhosa,2,200,United Kingdom,-8,Xhosa,12,24,1850,4,8,1852
+338,Ottoman-Yam,3,640,Turkey/Ottoman Empire/Egypt,-8,Yam,4,21,1851,7,9,1851
+339,Second British-Burmese,3,200,United Kingdom,-8,Burma,4,5,1852,11,20,1852
+340,French-Tukulor War,3,220,France,-8,Tukulor,-9,-9,1854,7,15,1857
+341,British-Santal,2,200,United Kingdom,-8,Santal,-9,-9,1855,-9,-9,1856
+342,Hodeida Seige,2,640,Ottoman Empire,-8,Beni Aseer tribe,1,22,1856,2,22,1856
+343,Second Opium,3,200,United Kingdom,-8,China,10,22,1856,10,24,1860
+343,Second Opium,3,220,France,-8,-8,10,22,1856,10,24,1860
+345,French Conquest of Kabylia,2,220,France,-8,Kabylia,5,17,1856,12,-9,1857
+347,Indian Mutiny,2,200,United Kingdom,-8,Indian sepoys,5,10,1857,4,7,1859
+349,First Franco-Vietnamese,3,220,France,-8,Vietnam,8,31,1858,6,5,1862
+350,Netherlands-Bone,3,210,Netherlands,-8,Bone,2,20,1859,1,20,1860
+351,Argentine-Buenos Aires,3,160,Argentina,-8,Buenos Aires,5,29,1859,10,23,1859
+352,Garibaldi Expedition,3,329,Two Sicilies,-8,Red Shirts,5,11,1860,10,14,1860
+353,Spanish-Santo Dominican,2,230,Spain,-8,Santo Domingo,4,-9,1863,5,3,1865
+355,British-Maori,2,200,United Kingdom,-8,New Zealand Maori,6,4,1863,1,14,1866
+356,Shimonoseki War,3,2,United States,-8,Choshu Daimyo,6,25,1863,9,7,1864
+356,Shimonoseki War,3,200,United Kingdom,-8,-8,7,5,1864,9,7,1864
+356,Shimonoseki War,3,210,Netherlands,-8,-8,7,5,1864,9,7,1864
+356,Shimonoseki War,3,220,France,-8,-8,6,25,1863,9,7,1864
+357,British Umbeyla Campaign,3,200,United Kingdom,-8,Pathan tribe,10,20,1863,12,21,1863
+359,Russian-Kokand,3,365,Russia,-8,Kokand,4,24,1864,6,17,1865
+360,British-Bhutanese,3,200,United Kingdom,-8,Bhutan,1,-9,1865,11,11,1865
+361,Russian-Bukharan,3,365,Russia,-8,Bukhara,1,12,1866,10,18,1866
+362,British-Ethiopian,3,200,United Kingdom,-8,Ethiopians,12,-9,1867,4,13,1868
+363,First Spanish-Cuban,2,230,Spain,-8,Cuba,10,10,1868,2,11,1878
+364,Attack on Bahr el-Ghazal,3,651,Egypt,-8,Bahr el-Ghazal,-9,-9,1869,-9,-9,1870
+365,Ottoman Conquest of Arabia,3,640,Ottoman Empire,-8,"Yemen,Asir,Hasa",11,30,1870,12
+366,Second Franco-Algerian,2,220,France,-8,Algeria,3,-9,1871,1,-9,1872
+367,Second British-Ashanti,3,200,United Kingdom,-8,Ashanti,1,-9,1873,2,4,1874
+369,Second Franco-Vietnamese,3,220,France,-8,Vietnam,11,20,1873,-9,-9,1874
+370,First Dutch-Achinese,3,210,Netherlands,-8,Aceh,3,26,1873,10,13,1878
+371,Kokand Rebellion,3,365,Russia,-8,Kokand,8,9,1875,2,28,1876
+372,Egyptian-Ethiopian,3,651,Egypt,-8,Ethiopia,9,-9,1875,3,9,1876
+373,Serbian-Turkish,3,640,Ottoman Empire,-8,"Serbia,Montenegro",6,30,1876,4,23
+374,Third British-Xhosa,2,200,United Kingdom,-8,S. Africa Xhosa,8,-9,1877,6,-9,1878
+375,Egypt-Sudanese Slavers,3,651,Egypt,-8,Sudanese Slavers,2,-9,1878,7,-9,1879
+376,Russo-Turkoman,3,365,Russia,-8,Turkomans,5,-9,1878,1,24,1881
+377,Austrian-Bosnian,3,300,Austria-Hungary,-8,Bosnia,7,29,1878,10,1,1878
+379,Second British-Afghan,3,200,United Kingdom,-8,Afghanistan,11,21,1878,5,26,1879
+380,Second British-Zulu,3,200,United Kingdom,-8,Zulu,1,11,1879,7,4,1879
+381,Gun War,2,200,United Kingdom,-8,Basuto,9,-9,1880,4,-9,1881
+382,First Boer War,2,200,United Kingdom,-8,Transvaal,12,16,1880,4,5,1881
+383,Franco-Tunisian,3,220,France,-8,Tunisia,6,-9,1881,4,4,1882
+384,First British-Mahdi,2,651,Egypt,-8,-8,8,-9,1881,9,15,1882
+384,First British-Mahdi,2,200,United Kingdom,-8,Mahdist Empire,8,-9,1881,3,22,1885
+385,Third Franco-Vietnamese,3,220,France,-8,"Vietnam,Black Flag",4,25,1882,6,14
+385,Third Franco-Vietnamese,3,-8,-8,710,China,12,14,1883,6,14,1884
+386,First Franco-Madagascan,3,220,France,-8,Madagasar,5,7,1883,12,12,1885
+387,Third British-Burmese,3,200,United Kingdom,-8,Burma,11,10,1885,-9,-9,1889
+389,French-Mandinka,3,220,France,-8,Mandinka,-9,-9,1885,-9,-9,1886
+390,Russo-Afghan,3,365,Russia,-8,Afghanistan,3,30,1885,4,-9,1885
+391,Serbian-Bulgarian,3,345,Serbia,-8,Bulgaria,11,2,1885,12,7,1885
+392,First Italian-Ethiopian,3,325,Italy,-8,Ethiopia,1,24,1887,3,-9,1887
+393,Zambezi Conquest,3,235,Portugal,-8,Prazero da Cruz,-9,-9,1888,-9,-9,1888
+394,First Franco-Dahomeyan,3,220,France,-8,Dahomey,3,1,1890,4,20,1890
+395,Franco-Jolof,3,220,France,-8,Jolof/Tukulor,4,-9,1890,2,24,1891
+396,Second Franco-Dahomeyan,3,220,France,-8,Dahomey,9,19,1892,11,9,1893
+397,Belgian-Tib,3,211,Belgium,-8,Tippu Tib Empire,10,-9,1892,2,-9,1894
+398,Third British-Ashanti,3,200,United Kingdom,-8,Ashanti,9,28,1893,-9,-9,1894
+399,Melilla War,3,230,Spain,-8,Rif tribes,9,29,1893,3,5,1894
+400,Mahdist-Italian,3,325,Italy,-8,Mahdist Empire,12,21,1893,7,12,1894
+401,Second Franco-Madagascan,3,220,France,-8,Madagasar,6,16,1894,10,1,1895
+402,Second Dutch-Bali,3,210,Netherlands,-8,Bali,7,-9,1894,11,22,1894
+403,Portuguese-Gaza Empire,3,235,Portugal,-8,Gaza Empire,2,1,1895,12,28,1895
+404,Second Spanish-Cuban,2,230,Spain,-8,Cuba,2,24,1895,4,21,1898
+405,Japan-Taiwanese,2,740,Japan,-8,Taiwanese,5,29,1895,10,21,1895
+406,Mazrui Rebellion,3,200,United Kingdom,-8,Mazrui clan of Kenya,7,3,1895,4,21,1896
+407,Second Italian-Ethiopian,3,325,Italy,-8,Ethiopia,12,7,1895,10,21,1896
+409,Second British-Mahdi,3,200,United Kingdom,-8,Mahdist Empire,6,7,1896,11,24,1899
+410,Spanish-Philippine,2,230,Spain,-8,Philippines,8,30,1896,5,1,1898
+411,British-South Nigerian,3,200,United Kingdom,-8,Nigeria,1,6,1897,2,25,1897
+412,British-Pathan,2,200,United Kingdom,-8,Pathans,7,26,1897,3,7,1898
+413,Hut Tax,2,200,United Kingdom,-8,Sierra Leone rebels,2,-9,1898,5,-9,1898
+414,American-Philippine,2,2,United States of America,-8,Philippines,2,4,1899,414,American-Philippine,2

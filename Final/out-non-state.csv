@@ -1,0 +1,63 @@
+WarNum,WarName,WarType,WhereFought,SideA1,SideA2,SideB1,SideB2,SideB3,SideB4,SideB5,StartYear,StartMonth
+1500,First Maori Tribal War,8,9,Te Rauparaha's Ngati Toa,-8,Taranaki,Ngai Tahu,Waikato,Ngati Ira,Rangitikei,1818,-9
+1501,Shaka Zulu-Bantu War,8,4,Shaka Zulu,-8,Bantu,-8,-8,-8,-8,1819,-9
+1502,Burma-Assam War,8,7,Burma,-8,Assam,-8,-8,-8,-8,1819,-9
+1503,Buenos Aires War,8,1,Buenos Aires,-8,Provinces,-8,-8,-8,-8,1820,1
+1505,Second Maori Tribal War,8,9,Hongi Hika's Nga Phuhi,-8,Ngati Paoa,Ngati Maru,Waikato River Maori,Te Arawa,-8,1821,9
+1506,Siam-Kedah War,8,7,Thailand,-8,Kedah,-8,-8,-8,-8,1821,11
+1508,China-Kashgaria War,8,7,China,-8,Muslim rebels,-8,-8,-8,-8,1825,-9
+1509,Mexico-Yaqui Indian War,8,1,Mexico,-8,Yaqui Indians,-8,-8,-8,-8,1825,10
+1510,Central American Confederation War,8,1,Conservative Confederation,-8,Liberals,-8,-8,-8,-8,1826,-9
+1511,Viang Chan- Siamese War,8,7,Viang Chan,-8,Siam,-8,-8,-8,-8,1826,-9
+1512,Peru-Gran Colombia War,8,1,Peru,-8,Gran Colombia,-8,-8,-8,-8,1828,7
+1513,Argentine War for Unity,8,1,Unitarians,-8,Provinces,-8,-8,-8,-8,1829,4
+1514,Sayyid Said War,8,4,Sayyid Said,-8,Mombasa,-8,-8,-8,-8,1829,12
+1515,China-Kokand War,8,7,China,-8,Kokand,-8,-8,-8,-8,1830,9
+1516,Siam-Cambodia-Vietnam War,8,7,Thailand,-8,Cambodia,Vietnam,-8,-8,-8,1831,-9
+1518,Argentina-Ranqueles Indian War,8,1,Argentina,-8,Ranqueles Indians,-8,-8,-8,-8,1833,3
+1520,Bolivia Conquest of Peru,8,1,Bolivia,-8,Peru,-8,-8,-8,-8,1835,6
+1521,Boer-Matabele War,8,4,Boer Trekkers,-8,Matabele,-8,-8,-8,-8,1836,8
+1523,Dissolution of the Bolivia-Peru Confederation,8,1,Chile,Argentina,Peru-Bolivia Confederation,-8,-8,-8,-8,1837,11
+1524,Persian Siege of Heart,8,7,Persia,-8,Herat,-8,-8,-8,-8,1837,11
+1525,Boer-Zulu War,8,4,Boer Trekkers,-8,Zulu,-8,-8,-8,-8,1838,2
+1527,Anti-Rosas War,8,1,Anti-Rosas Allies,-8,Rosas Federalist Army,-8,-8,-8,-8,1839,2
+1528,Dissolution of  the Central American Confederation,8,1,Conservatives,-8,Liberals,-8,-8,-8,-8,1839,3
+1530,Dogra-Tibet War,8,7,Jammu,-8,Tibet,-8,-8,-8,-8,1841,5
+1531,First Haiti-Santo Domingo War,8,1,Santo Domingo,-8,Haitians,-8,-8,-8,-8,1844,2
+1533,War of  Seven Khojas,8,7,Kokand,-8,China,-8,-8,-8,-8,1847,-9
+1534,Taiping Rebellion Phase 1,8,7,Taiping rebels,-8,China,-8,-8,-8,-8,1850,12
+1535,First Tukulor War,8,4,al-Hajj Umar's Tukulor army,-8,Malinke,-8,-8,-8,-8,1852,-9
+1536,Kashmir-Dards of Chilas War,8,7,Kashmir,-8,Dards,-8,-8,-8,-8,1852,-9
+1537,Han-Miao War Phase 1,8,7,Han,-8,Miao,-8,-8,-8,-8,1854,3
+1538,Second Haiti-Santo Domingo War,8,1,Haiti,-8,Santo-Domingo,-8,-8,-8,-8,1855,11
+1539,Han-Nien War,8,7,Han,-8,Nian,-8,-8,-8,-8,1855,-9
+1540,Filibuster War,8,1,Nicaragua,-8,Costa Rica,Honduras,Guatemala,El Salvador,-8,1856,2
+1541,Han-Panthay War Phase 1,8,7,Han,-8,Yunnan Muslims,-8,-8,-8,-8,1856,5
+1542,First Zulu Internecine War,8,4,Mbuyazi faction,-8,Cetshwayo faction,-8,-8,-8,-8,1856,12
+1543,Kucha and Khoja Uprising,8,7,Kucha,Khoja,China,-8,-8,-8,-8,1857,-9
+1544,First Boer-Basuto War,8,4,Basuto,-8,Boers,-8,-8,-8,-8,1858,-9
+1545,First Ethiopian War,8,4,Ethiopia,-8,Provincial armies,-8,-8,-8,-8,1858,-9
+1546,Second Tukulor War,8,4,Umar Tal,-8,Bambara,-8,-8,-8,-8,1860,-9
+1548,Transvaal War,8,4,Regional governments,-8,Transvaal government,-8,-8,-8,-8,1862,4
+1550,Central American War,8,1,Guatemala,Nicaragua,El Salvador,Honduras,-8,-8,-8,1863,1
+1551,First Australian Aboriginal War,8,9,Aborigines,-8,White Settlers,-8,-8,-8,-8,1864,12
+1552,Second Boer-Basuto War,8,4,Orange Free State,-8,Basuto,-8,-8,-8,-8,1865,6
+1553,Second Ethiopian War,8,4,Tigray,-8,Ethiopia,-8,-8,-8,-8,1868,4
+1554,Uruguay Colorados-Blancos War,8,1,Blancos,-8,Colorados,-8,-8,-8,-8,1870,3
+1556,Second Zulu Internecine War,8,4,Cetewayo faction,-8,Zibelu faction,-8,-8,-8,-8,1883,3
+1557,Oman-Ibadi War,8,6,Oman,-8,Ibadi,-8,-8,-8,-8,1883,10
+1558,Second Australian Aboriginal War,8,9,Aborigines,-8,White Settlers,-8,-8,-8,-8,1884,8
+1559,Ethiopia-Mahdi War,8,4,Ethiopia,-8,Mahdist army,-8,-8,-8,-8,1885,5
+1560,German East Africa Company War,8,4,German East Africa Company,-8,Arabs,Swahili,-8,-8,-8,1888,9
+1561,Rabih Zubayr-Bornu War,8,4,Rabah,-8,Bornu,-8,-8,-8,-8,1893,-9
+1567,First Nejd-Hejaz War,8,6,Nejd,-8,Hejaz,-8,-8,-8,-8,1919,5
+1568,Second Nejd-Hejaz War,8,6,Nejd,-8,Hejaz,-8,-8,-8,-8,1924,9
+1570,Partition Communal War,8,7,Muslims,-8,Hindus,Sikhs,-8,-8,-8,1946,8
+1571,Hyderabad War,8,7,Telenganans,-8,Razakars,-8,-8,-8,-8,1947,8
+1572,Palestine War,8,6,Arabs,-8,Zionists,-8,-8,-8,-8,1947,11
+1573,Cheju Rebellion,8,7,Communists,military,South Korea,-8,-8,-8,-8,1948,4
+1574,Rwandan Social Revolution,8,4,Hutu,-8,Tutsi,-8,-8,-8,-8,1959,10
+1577,Dhofar Rebellion Phase 1,8,6,Dhofar,-8,Oman,-8,-8,-8,-8,1968,9
+1581,Angola Guerilla War,8,4,MPLA,-8,FLNA,UNITA,-8,-8,-8,1974,10
+1582,East Timorese War Phase 1,8,7,Fretilin,Apodeti,UDT,-8,-8,-8,-8,1975,8
+1594,Hemda-Lendu War,9,4,Hemda,-8,Lendu,-8,-8,-8,-8,1999,6

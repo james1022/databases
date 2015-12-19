@@ -11,10 +11,10 @@ import java.util.Scanner;
 
 public class WorkedOnTableMaker {
 
-	private static final String INPUT_FILE = "artist-table-parsed.csv";
-	private static final String OUTPUT_FILE = "workedon-table-final.csv";
+	private static final String INPUT_FILE = "artist-parsed.csv";
+	private static final String OUTPUT_FILE = "out-workedon.csv";
 	private static final String SQL_FILE = "worked_on.sql";
-	private static final String ERROR_FILE = "workedon-table-final-error.csv";
+	private static final String ERROR_FILE = "error-workedon.csv";
 	private static final int NUM_ELEMENTS = 3;
 	private static HashSet<String> workedOn = new HashSet<>();
 	private static HashSet<String> errorWorkedOn = new HashSet<>();
@@ -119,7 +119,8 @@ public class WorkedOnTableMaker {
 	
 	private static boolean isNumeric(String str) {  
 	  try {  
-	    double d = Double.parseDouble(str);
+	    @SuppressWarnings("unused")
+		double d = Double.parseDouble(str);
 	  } catch(NumberFormatException nfe) {  
 	    return false;  
 	  }  

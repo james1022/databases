@@ -7,11 +7,16 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Takes a raw artwork file and sorts by film and non-film.
+ * @author Joon Hyuck Choi, Joo Chang Lee
+ *
+ */
 public class FilmSeparator {
 	
-	private static final String INPUT_FILE = "Artwork 100001-.csv";
+	private static final String INPUT_FILE = "Artwork 100001-end.csv";
 	private static final String ARTWORK_FILE = "Art 100001-.csv";
-	private static final String FILM_FILE = "Films.csv";
+	private static final String FILM_FILE = "films.csv";
 
 	public static void parse(File inFile, File artFile, File filmFile) throws IOException {
 		
