@@ -1,34 +1,5 @@
-Select ObjectId, count(ObjectId) as numWorks from WorkedOn group by ObjectId
-having count(ObjectId) >= all
-(select count(ObjectId) from WorkedOn group by ObjectId);
-
-select ArtistName, count(ObjectId) from WorkedOn
-group by ArtistName, ArtistBornYear
-having count(ObjectId) >= all (
-select count(ObjectId) from WorkedOn group by ArtistName, ArtistBornYear);
-
-select A.year, avg(A.width * A.height) from Artwork A, Wars W
-where W.WarName = 'World War I'
-and A.depth IS NULL
-and A.year >= W.startYear and A.year <= W.endYear group by A.year;
-
-
-select CreditLine, count(*) from Artwork
-group by CreditLine
-having count(*) >= all (
-select count(*) from Artwork
-group by CreditLine);
-
-select Medium, count(*) from Artwork
-group by Medium
-having count(*) >= all (
-select count(*) from Artwork
-group by Medium);
-
-
-
-
 DELIMITER //
+
 
 DROP PROCEDURE IF EXISTS AverageSizeDuringWar //
 CREATE PROCEDURE AverageSizeDuringWar(IN title VARCHAR(20))
@@ -57,35 +28,6 @@ BEGIN
 END
 //
 
-DROP PROCEDURE IF EXISTS AverageSizeFromNation //
-CREATE PROCEDURE AverageSizeFromNation(IN nation VARCHAR(30))
-BEGIN
-  DECLARE foundDemonym VARCHAR(30);
-
-  DECLARE cur1 CURSOR FOR
-  SELECT Demonym
-  FROM Demonym
-  Where nation = Country;
-
-  DECLARE EXIT HANDLER FOR NOT FOUND
-    SELECT 'SORRY, not found' AS 'Error Message';
-
-  OPEN cur1;
-  FETCH cur1 INTO foundDemonym;
-  CLOSE cur1;
-
-  SELECT At.ArtistNationality, ROUND(AVG(A.width * A.height), 2) as Average
-  FROM Artwork A, Artists At, WorkedOn W
-  WHERE W.ArtistName = At.ArtistName
-    AND W.ArtistBornYear = At.ArtistBornYear
-    AND At.ArtistNationality = foundDemonym
-    AND W.ObjectId = A.ObjectId
-  GROUP BY At.ArtistNationality;
-END
-//
-
-
-(modified so that it outputs size)
 
 DROP PROCEDURE IF EXISTS AverageSizeFromNation //
 CREATE PROCEDURE AverageSizeFromNation(IN nation VARCHAR(30), OUT size DECIMAL(10,2))
@@ -135,49 +77,6 @@ BEGIN
 END
 //
 
-
-(only arts)
-
-DROP PROCEDURE IF EXISTS ShowCreditByArtistNation //
-CREATE PROCEDURE ShowCreditByArtistNation(IN nation VARCHAR(30), OUT numPurchase INTEGER, OUT numGift INTEGER)
-BEGIN
-  DECLARE foundDemonym VARCHAR(30);
-
-  DECLARE cur1 CURSOR FOR
-  SELECT Demonym
-  FROM Demonym
-  Where nation = Country;
-
-  DECLARE EXIT HANDLER FOR NOT FOUND
-    SELECT 'SORRY, not found' AS 'Error Message';
-
-  OPEN cur1;
-  FETCH cur1 INTO foundDemonym;
-  CLOSE cur1;
-
-  SET numPurchase = (
-    SELECT count(A.ObjectId)
-    FROM Artwork A, Artists At, WorkedOn W
-    WHERE A.ObjectId = W.ObjectId
-      AND W.ArtistName = At.ArtistName
-      AND W.ArtistBornYear = At.ArtistBornYear
-      AND At.ArtistNationality = foundDemonym
-      AND A.CreditLine LIKE '%Purchase%');
-
-  SET numGift = (
-    SELECT count(A.ObjectId)
-    FROM Artwork A, Artists At, WorkedOn W
-    WHERE A.ObjectId = W.ObjectId
-      AND W.ArtistName = At.ArtistName
-      AND W.ArtistBornYear = At.ArtistBornYear
-      AND At.ArtistNationality = foundDemonym
-      AND A.CreditLine LIKE '%Gift%');
-
-END
-//
-
-
-(includes film)
 
 DROP PROCEDURE IF EXISTS ShowCreditByArtistNation //
 CREATE PROCEDURE ShowCreditByArtistNation(IN nation VARCHAR(30), OUT numPurchase INTEGER, OUT numGift INTEGER)
@@ -233,14 +132,8 @@ BEGIN
         AND W.ArtistBornYear = At.ArtistBornYear
         AND At.ArtistNationality = foundDemonym
         AND F.CreditLine LIKE '%Gift%')) as K);
-END //
-
-
-SELECT FLOOR(A.year / 10) * 10 as Decade, ROUND(AVG(A.width * A.height), 2) as Average
-FROM Artwork A
-WHERE A.depth IS NULL
-  AND A.year >= 1700
-  GROUP BY Decade;
+END
+//
 
 
 DROP PROCEDURE IF EXISTS AverageSizeFromNationByDecade //
@@ -273,22 +166,6 @@ BEGIN
     AND (FLOOR(A.year / 10) * 10) >= 1700
   GROUP BY Decade);
 
-END
-//
-
-
-DROP FUNCTION IF EXISTS DemonymFinder;//
-CREATE FUNCTION DemonymFinder(nation VARCHAR(30))
-  RETURNS VARCHAR(30)
-BEGIN
-  DECLARE foundDemonym VARCHAR(15);
-
-  SET foundDemonym =
-  (SELECT Demonym
-  FROM Demonym
-  Where nation = Country);
-
-  RETURN foundDemonym;
 END
 //
 
@@ -359,19 +236,16 @@ BEGIN
     ON N1.Decade = N2.Decade
     WHERE N1.Decade IS NULL;
 
-  SELECT *
-  FROM CompareView;
-
   CALL FindLargerSize();
 
 END
 //
 
 
-
 DROP PROCEDURE IF EXISTS FindLargerSize//
 CREATE PROCEDURE FindLargerSize()
 BEGIN
+
   DECLARE comparator INTEGER;
   DECLARE count INTEGER;
 
@@ -388,10 +262,17 @@ BEGIN
   DECLARE EXIT HANDLER FOR NOT FOUND
     SELECT 'SORRY, view not found' AS 'Error Message';
 
+  DECLARE EXIT HANDLER FOR 1146
+    SELECT 'SORRY, nothing to compare' AS 'Error Message';
+
   SET comparator = 0;
   SET count = 1;
 
   SET result = '';
+
+  SELECT *
+  FROM CompareView
+  ORDER BY Decade;
 
   OPEN cur3;
   FETCH cur3 INTO value1;
@@ -445,8 +326,58 @@ END
 //
 
 
+DROP FUNCTION IF EXISTS CompareInt;//
+CREATE FUNCTION CompareInt(value INTEGER)
+  RETURNS VARCHAR(10)
+BEGIN
+  DECLARE result VARCHAR(15);
+
+  IF value > 0
+  THEN
+    SET result = 'Larger';
+  ELSEIF value = 0
+  THEN
+    SET result = 'Similar';
+  ELSE
+    SET result = 'Smaller';
+  END IF;
+
+  RETURN result;
+END
+//
 
 
+DROP PROCEDURE IF EXISTS GoldenRatio //
+CREATE PROCEDURE GoldenRatio()
+BEGIN
+  DECLARE EXIT HANDLER FOR NOT FOUND
+    SELECT 'SORRY, not found' AS 'Error Message';
 
+  SELECT A.ArtistNationality, GoldenRatioCount, AvgSize, Round((GoldenRatioCount * 100 / AllCount), 2) as Percentage
+  FROM (
+    (
+      SELECT ArtistNationality, COUNT(A.ObjectId) AS GoldenRatioCount, ROUND(AVG(A.width * A.height), 2) AS AvgSize
+      FROM Artwork AS A, Artists AS At, WorkedOn AS W
+      WHERE W.ArtistName = At.ArtistName
+        AND W.ArtistBornYear = At.ArtistBornYear
+        AND W.ObjectId = A.ObjectId
+        AND (
+          ROUND(A.width / A.height, 1) = 1.6
+          OR
+          ROUND(A.height / A.width, 1) = 1.6)
+      GROUP BY At.ArtistNationality
+    ) AS A 
+    JOIN
+    (
+      SELECT ArtistNationality, COUNT(A.ObjectId) AS AllCount
+      FROM Artwork AS A, Artists AS At, WorkedOn AS W
+      WHERE W.ArtistName = At.ArtistName
+        AND W.ArtistBornYear = At.ArtistBornYear
+        AND W.ObjectId = A.ObjectId
+      GROUP BY At.ArtistNationality
+    ) AS B
+    ON A.ArtistNationality = B.ArtistNationality)
+  ORDER BY Percentage DESC;
 
-call CompareAverageSizeFromNationByDecade('France', 'Italy')//
+END
+//
