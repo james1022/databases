@@ -11,9 +11,9 @@ import java.util.Scanner;
 
 public class ArtistTableMaker {
 
-	private static final String INPUT_FILE = "artist-table-parsed.csv";
-	private static final String OUTPUT_FILE = "artist-table-final-whole.csv";
-	private static final String ERROR_FILE = "artist-table-final-error-whole.csv";
+	private static final String INPUT_FILE = "artist-parsed.csv";
+	private static final String OUTPUT_FILE = "out-artist.csv";
+	private static final String ERROR_FILE = "error-artist.csv";
 	private static final int NUM_ELEMENTS = 5;
 	private static HashSet<String> artists = new HashSet<>();
 	private static HashSet<String> errorArtists = new HashSet<>();
@@ -140,7 +140,8 @@ public class ArtistTableMaker {
 	
 	private static boolean isNumeric(String str) {  
 	  try {  
-	    double d = Double.parseDouble(str);
+	    @SuppressWarnings("unused")
+		double d = Double.parseDouble(str);
 	  } catch(NumberFormatException nfe) {  
 	    return false;  
 	  }  

@@ -23,7 +23,7 @@ public class Film {
 				+ "," + this.objectId;
 	}
 	
-	public String sqlStatement() {
+	public String toSqlStatement() {
 		String tit = this.title;
 		int marker = 0;
 
@@ -79,7 +79,8 @@ public class Film {
 	
 	private static boolean isNumeric(String str) {  
 		  try {  
-		    double d = Double.parseDouble(str);
+		    @SuppressWarnings("unused")
+			double d = Double.parseDouble(str);
 		  } catch(NumberFormatException nfe) {  
 		    return false;  
 		  }  

@@ -12,21 +12,24 @@ import java.util.Scanner;
 
 public class ArtworkParser {
 
-	private static final String INPUT_FILE = "Art 60001-80000 - Sheet1.csv";
-	private static final String OUTPUT_FILE = "tmp1.csv";
-	private static final String ERROR_FILE = "tmp2.csv";
-	private static final String SQL_FILE = "tmpsql.sql";
+	private static final String INPUT_FILE = "Art 100001-end - Sheet1.csv";
+	private static final String OUTPUT_FILE = "out-artwork-parsed";
+	private static final String ERROR_FILE = "out-artwork-error";
+	private static final String SQL_FILE = "artwork.sql";
 	private static final int NUM_ELEMENTS = 10;
 	private static HashSet<String> artwork = new HashSet<>();
 	private static HashSet<String> errorArtwork = new HashSet<>();
 	
 	private static void parse(File inFile, File outFile, File errorFile) throws IOException {
-		FileWriter writer = new FileWriter(outFile);
-		FileWriter errorWriter = new FileWriter(errorFile);
+		BufferedWriter writer = new BufferedWriter(new FileWriter(outFile));
+		BufferedWriter errorWriter = new BufferedWriter(new FileWriter(errorFile));
 		BufferedWriter sqlWriter = new BufferedWriter(new FileWriter(SQL_FILE, true));
 		ArrayList<Artwork> tupleList = new ArrayList<>();
 		tupleSeparator(tupleList, inFile, outFile);
 		
+		//This part should be commented out after executing this program
+		//for the first time for the first horizontally fragmented table.
+		//It won't matter with running the program though.
 //		sqlWriter.write("CREATE TABLE IF NOT EXISTS Artwork(\n");
 //		sqlWriter.write("    Title       VARCHAR(100)\n");
 //		sqlWriter.write("   ,Year   	INTEGER\n");
@@ -43,8 +46,8 @@ public class ArtworkParser {
 //		sqlWriter.write("   ,PRIMARY KEY(ObjectId)\n");
 //		sqlWriter.write(");\n");
 
-		writer.write("Title,Year,Medium,Width,Height,Depth,CreditLine,Classification,Department,YearAcquired,CuratorApproved,ObjectID\n");
-		errorWriter.write("Title,Year,Medium,Width,Height,Depth,CreditLine,Classification,Department,YearAcquired,CuratorApproved,ObjectID\n");
+//		writer.write("Title,Year,Medium,Width,Height,Depth,CreditLine,Classification,Department,YearAcquired,CuratorApproved,ObjectID\n");
+//		errorWriter.write("Title,Year,Medium,Width,Height,Depth,CreditLine,Classification,Department,YearAcquired,CuratorApproved,ObjectID\n");
 
 		//Write the result in a csv file
 		for (int i = 0; i < tupleList.size(); i++) {
@@ -54,7 +57,7 @@ public class ArtworkParser {
 				if (!artwork.contains(key)) {
 					artwork.add(key);
 					writer.write(oneArtwork.toString() + "\n");
-					sqlWriter.write(oneArtwork.sqlStatement() + "\n");
+					sqlWriter.write(oneArtwork.toSqlStatement() + "\n");
 				}
 			} else {
 				String key = oneArtwork.objectId + "";
@@ -109,6 +112,7 @@ public class ArtworkParser {
 						flag = true;
 					}
 					
+					//Error handling with the year attribute
 					if (item.contains("c. ")) {
 						item = item.substring(3, 7);
 					} else if (item.contains("c.")) {
@@ -266,11 +270,12 @@ public class ArtworkParser {
 	
 	private static boolean isNumeric(String str) {  
 	  try {  
-	    double d = Double.parseDouble(str);
+	    @SuppressWarnings("unused")
+		double d = Double.parseDouble(str);
 	  } catch(NumberFormatException nfe) {  
 	    return false;  
 	  }  
-	  return true;  
+	  return true; 
 	}
 	
 	

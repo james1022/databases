@@ -42,7 +42,7 @@ public class Artwork {
 				+ "," + this.objectId;
 	}
 	
-	public String sqlStatement() {
+	public String toSqlStatement() {
 		String tit = this.title;
 		int marker = 0;
 
@@ -90,9 +90,6 @@ public class Artwork {
 		if (this.title.equals("error") || this.year.equals("error") || this.medium.equals("error")) {
 			return true;
 		}
-//		if (this.height == null && this.width == null) {
-//			return true;
-//		}
 		return false;
 	}
 	

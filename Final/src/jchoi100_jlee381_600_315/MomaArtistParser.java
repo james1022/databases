@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class MomaArtistParser {
 	
 	private static final String INPUT_FILE = "Artist - Sheet1.csv";
-	private static final String OUTPUT_FILE = "artist-table-parsed.csv";
+	private static final String OUTPUT_FILE = "artist-parsed.csv";
 	private static final int NUM_ELEMENTS = 3;
 
 	public static void parse(File inFile, File outFile) throws IOException {

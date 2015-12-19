@@ -7,8 +7,9 @@ import java.util.Scanner;
 
 public class HistoryParser {
 	
-	private static final String INPUT_FILE = "Non-StateWarData_v4.0.csv";
-	private static final String OUTPUT_FILE = "non-state-table.csv";
+	//Works for all 4 types of war data tables.
+	private static final String INPUT_FILE = "DB-RawData/Non-StateWarData.csv";
+	private static final String OUTPUT_FILE = "out-non-state.csv";
 	private static final int NUM_ELEMENTS = 13;
 
 	public static void parse(File inFile, File outFile) throws IOException {
@@ -104,6 +105,7 @@ public class HistoryParser {
 	}
 	
 	public static void main(String args[]) throws IOException {
+		System.out.println("Program started...");
 		File inFile = new File(INPUT_FILE);
 		File outFile = new File(OUTPUT_FILE);
 		parse(inFile, outFile);
