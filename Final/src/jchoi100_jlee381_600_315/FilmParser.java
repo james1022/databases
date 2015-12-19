@@ -50,7 +50,7 @@ public class FilmParser {
 				if (!artwork.contains(key)) {
 					artwork.add(key);
 					writer.write(oneFilm.toString() + "\n");
-					sqlWriter.write(oneFilm.sqlStatement() + "\n");
+					sqlWriter.write(oneFilm.toSqlStatement() + "\n");
 				}
 			} else {
 				String key = oneFilm.objectId + "";

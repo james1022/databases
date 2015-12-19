@@ -44,7 +44,7 @@ public class WorkedOnTableMaker {
 				if (!workedOn.contains(key)) {
 					workedOn.add(key);
 					writer.write(oneTuple.toString() + "\n");
-					sqlWriter.write(oneTuple.sqlStatement() + "\n");
+					sqlWriter.write(oneTuple.toSqlStatement() + "\n");
 				}
 			} else {
 				String key = oneTuple.artistName + oneTuple.artistBornYear + oneTuple.objectId;

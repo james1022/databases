@@ -42,7 +42,7 @@ public class Artwork {
 				+ "," + this.objectId;
 	}
 	
-	public String sqlStatement() {
+	public String toSqlStatement() {
 		String tit = this.title;
 		int marker = 0;
 

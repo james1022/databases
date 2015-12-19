@@ -57,7 +57,7 @@ public class ArtworkParser {
 				if (!artwork.contains(key)) {
 					artwork.add(key);
 					writer.write(oneArtwork.toString() + "\n");
-					sqlWriter.write(oneArtwork.sqlStatement() + "\n");
+					sqlWriter.write(oneArtwork.toSqlStatement() + "\n");
 				}
 			} else {
 				String key = oneArtwork.objectId + "";

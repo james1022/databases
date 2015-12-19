@@ -17,7 +17,7 @@ public class WorkedOnTuple {
 		return this.artistName + "," + this.artistBornYear + "," + this.objectId;
 	}
 	
-	public String sqlStatement() {
+	public String toSqlStatement() {
 		String name = this.artistName;
 		int marker = 0;
 		
