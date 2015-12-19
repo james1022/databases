@@ -13,8 +13,8 @@ import java.util.Scanner;
 public class ArtworkParser {
 
 	private static final String INPUT_FILE = "Art 100001-end - Sheet1.csv";
-	private static final String OUTPUT_FILE = "out-artwork-parsed";
-	private static final String ERROR_FILE = "out-artwork-error";
+	private static final String OUTPUT_FILE = "out-artwork-parsed.csv";
+	private static final String ERROR_FILE = "out-artwork-error.csv";
 	private static final String SQL_FILE = "artwork.sql";
 	private static final int NUM_ELEMENTS = 10;
 	private static HashSet<String> artwork = new HashSet<>();
