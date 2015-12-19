@@ -13,6 +13,17 @@ and A.depth IS NULL
 and A.year >= W.startYear and A.year <= W.endYear group by A.year;
 
 
+select CreditLine, count(*) from Artwork
+group by CreditLine
+having count(*) >= all (
+select count(*) from Artwork
+group by CreditLine);
+
+select Medium, count(*) from Artwork
+group by Medium
+having count(*) >= all (
+select count(*) from Artwork
+group by Medium);
 
 
 
@@ -222,6 +233,220 @@ BEGIN
         AND W.ArtistBornYear = At.ArtistBornYear
         AND At.ArtistNationality = foundDemonym
         AND F.CreditLine LIKE '%Gift%')) as K);
+END //
+
+
+SELECT FLOOR(A.year / 10) * 10 as Decade, ROUND(AVG(A.width * A.height), 2) as Average
+FROM Artwork A
+WHERE A.depth IS NULL
+  AND A.year >= 1700
+  GROUP BY Decade;
+
+
+DROP PROCEDURE IF EXISTS AverageSizeFromNationByDecade //
+CREATE PROCEDURE AverageSizeFromNationByDecade(IN nation VARCHAR(30))
+BEGIN
+  DECLARE foundDemonym VARCHAR(30);
+
+  DECLARE cur1 CURSOR FOR
+  SELECT Demonym
+  FROM Demonym
+  Where nation = Country;
+
+  DECLARE EXIT HANDLER FOR NOT FOUND
+    SELECT 'SORRY, not found' AS 'Error Message';
+
+  OPEN cur1;
+  FETCH cur1 INTO foundDemonym;
+  CLOSE cur1;
+
+  DROP TABLE IF EXISTS tempTable;
+  CREATE TABLE tempTable(Decade INTEGER, Average DECIMAL(10, 2));
+  INSERT INTO tempTable (
+  SELECT FLOOR(A.year / 10) * 10 as Decade,
+    ROUND(AVG(A.width * A.height), 2) as Average
+  FROM Artwork A, Artists At, WorkedOn W
+  WHERE W.ArtistName = At.ArtistName
+    AND W.ArtistBornYear = At.ArtistBornYear
+    AND At.ArtistNationality = foundDemonym
+    AND W.ObjectId = A.ObjectId
+    AND (FLOOR(A.year / 10) * 10) >= 1700
+  GROUP BY Decade);
 
 END
 //
+
+
+DROP FUNCTION IF EXISTS DemonymFinder;//
+CREATE FUNCTION DemonymFinder(nation VARCHAR(30))
+  RETURNS VARCHAR(30)
+BEGIN
+  DECLARE foundDemonym VARCHAR(15);
+
+  SET foundDemonym =
+  (SELECT Demonym
+  FROM Demonym
+  Where nation = Country);
+
+  RETURN foundDemonym;
+END
+//
+
+
+DROP PROCEDURE IF EXISTS CompareAverageSizeFromNationByDecade //
+CREATE PROCEDURE CompareAverageSizeFromNationByDecade(IN nation1 VARCHAR(30), IN nation2 VARCHAR(30))
+BEGIN
+  DECLARE foundDemonym1 VARCHAR(30);
+  DECLARE foundDemonym2 VARCHAR(30);
+
+  DECLARE cur1 CURSOR FOR
+  SELECT Demonym
+  FROM Demonym
+  Where nation1 = Country;
+
+  DECLARE cur2 CURSOR FOR
+  SELECT Demonym
+  FROM Demonym
+  Where nation2 = Country;
+
+  DECLARE EXIT HANDLER FOR NOT FOUND
+    SELECT 'SORRY, nation not found' AS 'Error Message';
+
+  OPEN cur1;
+  FETCH cur1 INTO foundDemonym1;
+  CLOSE cur1;
+
+  OPEN cur2;
+  FETCH cur2 INTO foundDemonym2;
+  CLOSE cur2;
+
+  DROP TABLE IF EXISTS Nation1AvgTable;
+  CREATE TABLE Nation1AvgTable(Decade INTEGER PRIMARY KEY, Nation1Avg DECIMAL(10, 2));
+  INSERT INTO Nation1AvgTable (
+    SELECT FLOOR(A.year / 10) * 10 as Decade,
+      ROUND(AVG(A.width * A.height), 2) as Nation1
+    FROM Artwork A, Artists At, WorkedOn W
+    WHERE W.ArtistName = At.ArtistName
+      AND W.ArtistBornYear = At.ArtistBornYear
+      AND At.ArtistNationality = foundDemonym1
+      AND W.ObjectId = A.ObjectId
+      AND (FLOOR(A.year / 10) * 10) >= 1700
+    GROUP BY Decade);
+
+  DROP TABLE IF EXISTS Nation2AvgTable;
+  CREATE TABLE Nation2AvgTable(Decade INTEGER PRIMARY KEY, Nation2Avg DECIMAL(10, 2));
+  INSERT INTO Nation2AvgTable (
+    SELECT FLOOR(A.year / 10) * 10 as Decade,
+      ROUND(AVG(A.width * A.height), 2) as Nation2
+    FROM Artwork A, Artists At, WorkedOn W
+    WHERE W.ArtistName = At.ArtistName
+      AND W.ArtistBornYear = At.ArtistBornYear
+      AND At.ArtistNationality = foundDemonym2
+      AND W.ObjectId = A.ObjectId
+      AND (FLOOR(A.year / 10) * 10) >= 1700
+    GROUP BY Decade);
+
+  DROP VIEW IF EXISTS CompareView;
+  CREATE VIEW CompareView AS 
+    SELECT N1.Decade, N1.Nation1Avg, N2.Nation2Avg
+    FROM Nation1AvgTable N1
+    LEFT JOIN Nation2AvgTable N2
+    ON N1.Decade = N2.Decade
+    UNION 
+    SELECT N2.Decade, N1.Nation1Avg, N2.Nation2Avg
+    FROM Nation1AvgTable N1
+    RIGHT JOIN Nation2AvgTable N2
+    ON N1.Decade = N2.Decade
+    WHERE N1.Decade IS NULL;
+
+  SELECT *
+  FROM CompareView;
+
+  CALL FindLargerSize();
+
+END
+//
+
+
+
+DROP PROCEDURE IF EXISTS FindLargerSize//
+CREATE PROCEDURE FindLargerSize()
+BEGIN
+  DECLARE comparator INTEGER;
+  DECLARE count INTEGER;
+
+  DECLARE value1 INTEGER;
+  DECLARE value2 DECIMAL(10, 2);
+  DECLARE value3 DECIMAL(10, 2);
+
+  DECLARE result VARCHAR(20);
+
+  DECLARE cur3 CURSOR FOR
+  SELECT Decade
+  FROM CompareView;
+
+  DECLARE EXIT HANDLER FOR NOT FOUND
+    SELECT 'SORRY, view not found' AS 'Error Message';
+
+  SET comparator = 0;
+  SET count = 1;
+
+  SET result = '';
+
+  OPEN cur3;
+  FETCH cur3 INTO value1;
+  WHILE count < (SELECT count(*) from CompareView) DO
+    SET value2 = (
+      SELECT Nation1Avg
+      FROM CompareView
+      WHERE Decade = value1);
+    SET value3 = (
+      SELECT Nation2Avg
+      FROM CompareView
+      WHERE Decade = value1);
+    IF value2 > value3
+    THEN
+      SET comparator = comparator + 1;
+    ELSE
+      SET comparator = comparator - 1;
+    END IF;
+    SET count = count + 1;
+    FETCH cur3 INTO value1;
+  END WHILE;
+  SET value2 = (
+    SELECT Nation1Avg
+    FROM CompareView
+    WHERE Decade = value1);
+  SET value3 = (
+    SELECT Nation2Avg
+    FROM CompareView
+    WHERE Decade = value1);
+  IF value2 > value3
+  THEN
+    SET comparator = comparator + 1;
+  ELSE
+    SET comparator = comparator - 1;
+  END IF;
+  CLOSE cur3;
+
+  IF comparator > 0
+  THEN
+    SET result = 'Larger';
+  ELSEIF comparator = 0
+  THEN
+    SET result = 'Similar';
+  ELSE
+    SET result = 'Smaller';
+  END IF;
+
+  SELECT result;
+
+END
+//
+
+
+
+
+
+
+call CompareAverageSizeFromNationByDecade('France', 'Italy')//
